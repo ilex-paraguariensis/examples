@@ -1,0 +1,5 @@
+{
+    "project": "mnist_classifier",
+    "results_folder": "results",
+    "mate_version": "0.2.5"
+}

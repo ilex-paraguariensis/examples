@@ -1,0 +1,25 @@
+{
+	"trainer":{
+		"name":"basic_mnist",
+		"args":{
+			"lightning_trainer":{
+				"class_name":"Trainer",
+				"args":{
+					"accelerator":"gpu",
+					"devices":1,
+					"max_epochs":10
+				}
+			},
+			"classifier":{
+				"name":"cnn",
+				"args":{
+					"channels":1
+				}
+			}
+		}
+	},
+	"data_loader":{
+		"name":"mnist_data_loader",
+		"args":{}
+	}
+}
