@@ -7,15 +7,15 @@ from mate.trainer import LightningTrainer
 from pytorch_lightning import LightningModule
 from torchmetrics import Accuracy
 from torchvision import transforms
+import ipdb
 
 # imports DataLoader
 
 
 class LitMNIST(LightningModule):
-
     def __init__(
         self,
-        classifier:nn.Module,
+        classifier: nn.Module,
         data_dir: str = ".",
         hidden_size: int = 64,
         learning_rate: float = 2e-4,
@@ -79,18 +79,20 @@ class LitMNIST(LightningModule):
 
     def configure_optimizers(self):
         optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
+        ipdb.set_trace()
         return optimizer
 
 
 class BasicMnist(LightningTrainer):
     def __init__(
         self,
-        classifier:nn.Module,
-        lightning_trainer:Trainer,
-        data_dir: str=".",
-        hidden_size: int=3,
-        learning_rate: float=0.001,
+        classifier: nn.Module,
+        lightning_trainer: Trainer,
+        data_dir: str = ".",
+        hidden_size: int = 3,
+        learning_rate: float = 0.001,
     ):
         super().__init__(lightning_trainer)
-        self._module = LitMNIST(classifier, data_dir, hidden_size, learning_rate)
-        
+        self._module = LitMNIST(
+            classifier, data_dir, hidden_size, learning_rate
+        )
