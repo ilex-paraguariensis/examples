@@ -1,6 +1,4 @@
-## Examples with [Maté 🧉](https://github.com/ilex-paraguariensis/yerbamate/tree/lightning) [PyTorch Lightning⚡](https://github.com/Lightning-AI/lightning) [huggingface 🤗](https://github.com/huggingface/transformers) 
-A vision respository of deep learning tasks with ViT and CNN models. Maté 🧉 supports pretrianed models from any installed python package, including [huggingface 🤗](https://github.com/huggingface/transformers)  and [torchvision](https://github.com/pytorch/vision) models. All the ViT models are sourced from [lucidrains vit-pytorch](https://github.com/lucidrains/vit-pytorch) repository. You can use Maté 🧉 for classification, image generation or loading pretrained models. This project requires pytorch, pytorch-lightning, huggingface-torch, torch-vision. Maté 🧉 is a simple wrapper around pytorch-lightning, so you can use any pytorch-lightning trainer arguments. Maté 🧉 also supports distributed training, so you can train your models on multiple GPUs or datasets. Maté 🧉 is still in development, so please report any bugs or feature requests.
-
+## Examples with [Maté 🧉](https://github.com/ilex-paraguariensis/yerbamate/tree/v2)
 <!--
 ## Getting started
 
