@@ -78,16 +78,6 @@ You can consequently restart the training with the same configuration by running
 ```bash
 mate restart vit vanilla
 ```
-
-## Results
-
-You can visalize the results with any of [PyTorch Lightning⚡](https://github.com/Lightning-AI/lightning) loggers, including wandb, tensorboards, csv logger and your own custom one. By default this project uses wandb. An example of fine tuning a resnet on cifar:
-
-<img src="/images/train_accuracy.png" alt="drawing" width="80%"/>
-<img src="/images/val_accuracy.png" alt=drawing width="80%" />
-<img src="/images/train_loss.png" alt="drawing" width="80%"/>
-<img src="/images/val_loss.png" alt="drawing" width="80%"/>
-
 ## Experimenting and trying other models
 You can try other models by changing the model in the hyperparameters or making new configuration file. Over 30 ViTs are available to experiment with. You can also fork the vit models and change the source code as you wish:
 ```bash
