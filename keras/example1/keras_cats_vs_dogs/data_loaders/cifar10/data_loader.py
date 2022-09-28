@@ -1,57 +1,79 @@
-# Cifar 10 data loader lightning class based on torchvision cifar10 dataset
-
-from argparse import Namespace
-from array import array
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
 import os
-import torch as t
-import pytorch_lightning as pl
-from torchvision.datasets import CIFAR10
-from torchvision import transforms
-import ipdb
-
-from torch.utils.data import DataLoader
 
 
-class CifarLightningDataModule(pl.LightningDataModule):
+class DataLoader:
+    def __init__(self, batch_size: int = 32):
+        if not os.path.exists("PetImages"):
+            os.system(
+                "curl -O https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_5340.zip"
+            )
+            os.system("unzip -q kagglecatsanddogs_5340.zip")
 
-    def __init__(self, location: str, batch_size: int, image_size: array, crop_size: int = 4, *args):
-        super().__init__(*args)
+            num_skipped = 0
+            for folder_name in ("Cat", "Dog"):
+                folder_path = os.path.join("PetImages", folder_name)
+                for fname in os.listdir(folder_path):
+                    fpath = os.path.join(folder_path, fname)
+                    try:
+                        fobj = open(fpath, "rb")
+                        is_jfif = tf.compat.as_bytes("JFIF") in fobj.peek(10)
+                    finally:
+                        fobj.close()
 
-        self.data_dir = location
-        self.batch_size = batch_size
-        self.image_size = tuple(image_size)
-
-        # transform pil image to tensor
-        transform = transforms.Compose(
-            [transforms.ToTensor(),
-             transforms.Resize(self.image_size),
-             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-             ]
-
-        )
-        train_trainsform = transforms.Compose(
+                    if not is_jfif:
+                        num_skipped += 1
+                        # Delete corrupted image
+                        os.remove(fpath)
+        image_size = (180, 180)
+        data_augmentation = keras.Sequential(
             [
-                transforms.ToTensor(),
-                transforms.Resize(self.image_size),
-                transforms.RandomHorizontalFlip(),
-                transforms.RandomRotation(10),
-                transforms.Normalize([0.485, 0.456, 0.406], [
-                                     0.229, 0.224, 0.225])
+                layers.RandomFlip("horizontal"),
+                layers.RandomRotation(0.1),
             ]
         )
-
-        self.train_set = CIFAR10(
-            root=self.data_dir, train=True, download=True, transform=train_trainsform)
-        self.test_set = CIFAR10(
-            root=self.data_dir, train=False, download=True, transform=transform)
-
-        self.num_workers = os.cpu_count()
+        train_ds = tf.keras.preprocessing.image_dataset_from_directory(
+            "PetImages",
+            validation_split=0.2,
+            subset="training",
+            seed=1337,
+            image_size=image_size,
+            batch_size=batch_size,
+        )
+        val_ds = tf.keras.preprocessing.image_dataset_from_directory(
+            "PetImages",
+            validation_split=0.2,
+            subset="validation",
+            seed=1337,
+            image_size=image_size,
+            batch_size=batch_size,
+        )
+        augmented_train_ds = train_ds.map(
+            lambda x, y: (data_augmentation(x, training=True), y)
+        )
+        self.train_ds = augmented_train_ds.prefetch(buffer_size=32)
+        self.val_ds = val_ds.prefetch(buffer_size=32)
 
     def train_dataloader(self):
-        return DataLoader(self.train_set, batch_size=self.batch_size, shuffle=True, num_workers=self.num_workers)
+        return self.train_ds
 
     def val_dataloader(self):
-        return DataLoader(self.test_set, batch_size=self.batch_size, shuffle=False, num_workers=self.num_workers)
+        return self.val_ds
 
     def test_dataloader(self):
-        return DataLoader(self.test_set, batch_size=self.batch_size, shuffle=False, num_workers=self.num_workers)
+        return self.val_ds
+
+
+loader = DataLoader()
+
+
+def get_train_data_loader(batch_size: int = 32):
+
+    return loader.train_ds
+
+
+def get_data_loader(batch_size: int = 32):
+
+    return loader.train_ds, loader.val_ds
