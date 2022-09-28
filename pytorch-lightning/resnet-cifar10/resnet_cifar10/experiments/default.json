@@ -14,12 +14,12 @@
         }
     },
     "pytorch_lightning_module": {
-        "module": "base_classification",
+        "module": "trainers.base_classification.base_classification",
         "class_name": "LightningClassificationModule",
         "object_key": "pl_model",
         "params": {
             "classifier": {
-                "module": "modules.resnet.resnet",
+                "module": "models.resnet.resnet",
                 "object_key": "classifier",
                 "class_name": "ResNet",
                 "params": {
