@@ -8,7 +8,7 @@
         }
     },
     "trainer": {
-        "module": "modules.resnet.resnet",
+        "module": "models.resnet.resnet",
         "function": "get_model",
         "params": {
             "input_shape": [
