@@ -6,7 +6,7 @@ import ipdb
 
 
 class LightningClassificationModule(LightningModule):
-    def __init__(self, classifier: t.nn.Module, optimizers: list):
+    def __init__(self, classifier: t.nn.Module, optimizers):
         super().__init__()
 
         # self.params = params
