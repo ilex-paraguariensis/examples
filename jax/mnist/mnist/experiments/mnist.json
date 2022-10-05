@@ -1,6 +1,6 @@
 {
     "data": {
-        "module": "mnist.data_loaders.mnist.datasets",
+        "module": "data_loaders.mnist.datasets",
         "function": "mnist",
         "object_key": "data",
         "params": {
@@ -8,7 +8,7 @@
         }
     },
     "train_function": {
-        "module": "mnist.models.cnn.mnist_classifier",
+        "module": "models.cnn.mnist_classifier",
         "function": "train",
         "params": {
             "datasets": "{data}",
