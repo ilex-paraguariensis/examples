@@ -5,5 +5,17 @@
         "cuda": false
     },
     "results_folder": "./results",
-    "mate_version": "0.2.5"
-}   
+    "mate_version": "0.2.5",
+    "metadata": {
+        "name": "resnet_cifar10",
+        "description": "ResNet on CIFAR10",
+        "author": "Mate",
+        "email": "yerbamate.dl@pm.me",
+        "license": "MIT",
+        "url": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/",
+        "version": "0.1.0",
+        "category": "classification",
+        "type": "project",
+        "backbone": "pytorch_lightning"
+    }
+}
