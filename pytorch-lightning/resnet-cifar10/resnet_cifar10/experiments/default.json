@@ -119,10 +119,12 @@
                 }
             ],
             "logger": {
-                "module": "pytorch_lightning.loggers",
-                "class_name": "CSVLogger",
+                "module": "aim.pytorch_lightning",
+                "class_name": "AimLogger",
                 "params": {
-                    "save_dir": "./logs"
+										"experiment":"default",
+										"train_metric_prefix":"train_",
+										"val_metric_prefix":"val_"
                 }
             }
         },
