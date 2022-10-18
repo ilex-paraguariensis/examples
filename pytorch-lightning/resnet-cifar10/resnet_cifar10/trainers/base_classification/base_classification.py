@@ -3,10 +3,10 @@ from pytorch_lightning import LightningModule
 import torch as t
 import mate
 import ipdb
-
+from aim import Run
 
 class LightningClassificationModule(LightningModule):
-    def __init__(self, classifier: t.nn.Module, optimizers):
+    def __init__(self, classifier: t.nn.Module, optimizers:dict[str, t.optim.Optimizer]):
         super().__init__()
 
         # self.params = params
