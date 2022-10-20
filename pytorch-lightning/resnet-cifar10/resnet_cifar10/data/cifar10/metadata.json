@@ -4,15 +4,19 @@
     "version": "0.1.0",
     "author": "Mate",
     "license": "MIT",
-    "url": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/data_loaders/cifar10/",
+    "url": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/data/cifar10/",
     "category": "classification",
     "backbone": "pytorch_lightning",
-    "type": "data_loaders",
+    "module_path": [
+        "data",
+        "cifar10"
+    ],
+    "type": "data",
     "exports": {
         "classes": [
             {
                 "class_name": "CifarLightningDataModule",
-                "module": "cifar10",
+                "module": "data.cifar10",
                 "params": {
                     "location": {
                         "class": "str",
@@ -31,7 +35,7 @@
                 "samples": [
                     {
                         "sample": {
-                            "module": "data_loaders.cifar10.data_loader",
+                            "module": "data.cifar10.data_loader",
                             "class_name": "CifarLightningDataModule",
                             "object_key": "data",
                             "params": {
@@ -46,7 +50,7 @@
                         },
                         "experiment": {
                             "data": {
-                                "module": "data_loaders.cifar10.data_loader",
+                                "module": "data.cifar10.data_loader",
                                 "class_name": "CifarLightningDataModule",
                                 "object_key": "data",
                                 "params": {
@@ -202,5 +206,29 @@
             }
         ],
         "functions": []
+    },
+    "dependencies": {
+        "pip": [
+            {
+                "name": "pytorch_lightning",
+                "version": "1.7.5",
+                "lastVersion": "1.7.7"
+            },
+            {
+                "name": "ipdb",
+                "version": "0.13.9",
+                "lastVersion": "0.13.9"
+            },
+            {
+                "name": "torch",
+                "version": "1.12.1+cu116",
+                "lastVersion": "1.12.1"
+            },
+            {
+                "name": "torchvision",
+                "version": "0.13.1+cu116",
+                "lastVersion": "0.13.1"
+            }
+        ]
     }
 }

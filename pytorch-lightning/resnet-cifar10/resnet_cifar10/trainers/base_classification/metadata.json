@@ -7,12 +7,16 @@
     "url": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/trainers/base_classification/",
     "category": "classification",
     "backbone": "pytorch_lightning",
+    "module_path": [
+        "trainers",
+        "base_classification"
+    ],
     "type": "trainers",
     "exports": {
         "classes": [
             {
                 "class_name": "LightningClassificationModule",
-                "module": "base_classification",
+                "module": "trainers.base_classification",
                 "params": {
                     "classifier": {
                         "class": "Module",
@@ -100,7 +104,7 @@
                         },
                         "experiment": {
                             "data": {
-                                "module": "data_loaders.cifar10.data_loader",
+                                "module": "data.cifar10.data_loader",
                                 "class_name": "CifarLightningDataModule",
                                 "object_key": "data",
                                 "params": {
@@ -255,5 +259,33 @@
             }
         ],
         "functions": []
+    },
+    "dependencies": {
+        "pip": [
+            {
+                "name": "ipdb",
+                "version": "0.13.9",
+                "lastVersion": "0.13.9"
+            },
+            {
+                "name": "aim",
+                "version": "3.14.1",
+                "lastVersion": "3.14.1"
+            },
+            {
+                "name": "torch",
+                "version": "1.12.1+cu116",
+                "lastVersion": "1.12.1"
+            },
+            {
+                "name": "pytorch_lightning",
+                "version": "1.7.5",
+                "lastVersion": "1.7.7"
+            },
+            {
+                "name": "ymdl.egg",
+                "version": "info"
+            }
+        ]
     }
 }

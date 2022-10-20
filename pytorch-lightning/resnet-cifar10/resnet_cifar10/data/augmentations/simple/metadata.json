@@ -1,0 +1,51 @@
+{
+    "name": "resnet_cifar10",
+    "description": "ResNet on CIFAR10",
+    "version": "0.1.0",
+    "author": "Mate",
+    "license": "MIT",
+    "url": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/data/augmentations/simple/",
+    "category": "classification",
+    "backbone": "pytorch_lightning",
+    "module_path": [
+        "data",
+        "augmentations",
+        "simple"
+    ],
+    "type": "data",
+    "exports": {
+        "classes": [],
+        "functions": [
+            {
+                "function_name": "get_augmentations",
+                "module": "data.augmentations.simple",
+                "params": {
+                    "image_size": 256
+                }
+            },
+            {
+                "function_name": "get_test_augmentations",
+                "module": "data.augmentations.simple",
+                "params": {
+                    "image_size": 256
+                }
+            },
+            {
+                "function_name": "get_train_augmentations",
+                "module": "data.augmentations.simple",
+                "params": {
+                    "image_size": 256
+                }
+            }
+        ]
+    },
+    "dependencies": {
+        "pip": [
+            {
+                "name": "torchvision",
+                "version": "0.13.1+cu116",
+                "lastVersion": "0.13.1"
+            }
+        ]
+    }
+}
