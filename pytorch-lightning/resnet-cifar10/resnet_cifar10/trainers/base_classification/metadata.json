@@ -104,7 +104,7 @@
                         },
                         "experiment": {
                             "data": {
-                                "module": "data.cifar10.data_loader",
+                                "module": "data.loaders.cifar10.data_loader",
                                 "class_name": "CifarLightningDataModule",
                                 "object_key": "data",
                                 "params": {
@@ -263,9 +263,9 @@
     "dependencies": {
         "pip": [
             {
-                "name": "torch",
-                "version": "1.13.0.dev20220928+cu116",
-                "lastVersion": "1.12.1"
+                "name": "pytorch_lightning",
+                "version": "1.7.7",
+                "lastVersion": "1.7.7"
             },
             {
                 "name": "ipdb",
@@ -278,13 +278,13 @@
                 "lastVersion": "3.14.1"
             },
             {
-                "name": "ymdl.egg",
-                "version": "info"
+                "name": "torch",
+                "version": "1.13.0.dev20220928+cu116",
+                "lastVersion": "1.12.1"
             },
             {
-                "name": "pytorch_lightning",
-                "version": "1.7.7",
-                "lastVersion": "1.7.7"
+                "name": "ymdl.egg",
+                "version": "info"
             }
         ]
     }

@@ -78,7 +78,7 @@
                         },
                         "experiment": {
                             "data": {
-                                "module": "data.cifar10.data_loader",
+                                "module": "data.loaders.cifar10.data_loader",
                                 "class_name": "CifarLightningDataModule",
                                 "object_key": "data",
                                 "params": {
