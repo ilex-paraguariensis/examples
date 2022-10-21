@@ -255,23 +255,7 @@
                 "errors": [
                     "Missing parameter classifier.  Hint: <class 'torch.nn.modules.module.Module'>",
                     "Missing parameter optimizers.  Hint: dict[str, torch.optim.optimizer.Optimizer]"
-                ],
-                "returns": {
-                    "class": "<class 'resnet_cifar10.trainers.base_classification.base_classification.LightningClassificationModule'>",
-                    "module": "resnet_cifar10.trainers.base_classification.base_classification",
-                    "mro": [
-                        "<class 'resnet_cifar10.trainers.base_classification.base_classification.LightningClassificationModule'>",
-                        "<class 'pytorch_lightning.core.module.LightningModule'>",
-                        "<class 'pytorch_lightning.core.mixins.device_dtype_mixin.DeviceDtypeModuleMixin'>",
-                        "<class 'pytorch_lightning.core.mixins.hparams_mixin.HyperparametersMixin'>",
-                        "<class 'pytorch_lightning.core.saving.ModelIO'>",
-                        "<class 'pytorch_lightning.core.hooks.ModelHooks'>",
-                        "<class 'pytorch_lightning.core.hooks.DataHooks'>",
-                        "<class 'pytorch_lightning.core.hooks.CheckpointHooks'>",
-                        "<class 'torch.nn.modules.module.Module'>",
-                        "<class 'object'>"
-                    ]
-                }
+                ]
             }
         ],
         "functions": []
@@ -279,28 +263,28 @@
     "dependencies": {
         "pip": [
             {
+                "name": "torch",
+                "version": "1.13.0.dev20220928+cu116",
+                "lastVersion": "1.12.1"
+            },
+            {
+                "name": "ipdb",
+                "version": "0.13.9",
+                "lastVersion": "0.13.9"
+            },
+            {
                 "name": "aim",
                 "version": "3.14.1",
                 "lastVersion": "3.14.1"
-            },
-            {
-                "name": "pytorch_lightning",
-                "version": "1.7.5",
-                "lastVersion": "1.7.7"
-            },
-            {
-                "name": "torch",
-                "version": "1.12.1+cu116",
-                "lastVersion": "1.12.1"
             },
             {
                 "name": "ymdl.egg",
                 "version": "info"
             },
             {
-                "name": "ipdb",
-                "version": "0.13.9",
-                "lastVersion": "0.13.9"
+                "name": "pytorch_lightning",
+                "version": "1.7.7",
+                "lastVersion": "1.7.7"
             }
         ]
     }

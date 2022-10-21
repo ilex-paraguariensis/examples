@@ -20,7 +20,7 @@
         "pip": [
             {
                 "name": "torchvision",
-                "version": "0.13.1+cu116",
+                "version": "0.13.1",
                 "lastVersion": "0.13.1"
             }
         ]

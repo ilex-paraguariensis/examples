@@ -1,0 +1,69 @@
+{
+    "name": "resnet_cifar10",
+    "description": "ResNet on CIFAR10",
+    "version": "0.1.0",
+    "author": "Mate",
+    "license": "MIT",
+    "url": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/data/loaders/cifar10/",
+    "category": "classification",
+    "backbone": "pytorch_lightning",
+    "module_path": [
+        "data",
+        "loaders",
+        "cifar10"
+    ],
+    "type": "data",
+    "exports": {
+        "classes": [
+            {
+                "class_name": "CifarLightningDataModule",
+                "module": "data.loaders.cifar10",
+                "params": {
+                    "location": {
+                        "class": "str",
+                        "module": "builtins"
+                    },
+                    "batch_size": {
+                        "class": "int",
+                        "module": "builtins"
+                    },
+                    "image_size": {
+                        "class": "array",
+                        "module": "array"
+                    },
+                    "crop_size": 4
+                },
+                "errors": [
+                    "Missing parameter location.  Hint: <class 'str'>",
+                    "Missing parameter batch_size.  Hint: <class 'int'>",
+                    "Missing parameter image_size.  Hint: <class 'array.array'>"
+                ]
+            }
+        ],
+        "functions": []
+    },
+    "dependencies": {
+        "pip": [
+            {
+                "name": "pytorch_lightning",
+                "version": "1.7.7",
+                "lastVersion": "1.7.7"
+            },
+            {
+                "name": "ipdb",
+                "version": "0.13.9",
+                "lastVersion": "0.13.9"
+            },
+            {
+                "name": "torch",
+                "version": "1.13.0.dev20220928+cu116",
+                "lastVersion": "1.12.1"
+            },
+            {
+                "name": "torchvision",
+                "version": "0.13.1",
+                "lastVersion": "0.13.1"
+            }
+        ]
+    }
+}
