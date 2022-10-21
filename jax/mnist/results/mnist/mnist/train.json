@@ -1,0 +1,30 @@
+{
+    "data": {
+        "function": "mnist",
+        "module": "data_loaders.mnist.datasets",
+        "params": {
+            "permute_train": true
+        }
+    },
+    "train_function": {
+        "function": "train",
+        "module": "models.cnn.mnist_classifier",
+        "params": {
+            "datasets": "{data}",
+            "step_size": 0.001,
+            "num_epochs": 10,
+            "batch_size": 128,
+            "momentum_mass": 0.9
+        }
+    },
+    "mate": {
+        "project": "mnist",
+        "mate_version": "0.2.5",
+        "results_folder": "./results",
+        "override_params": {
+            "enabled": false,
+            "cuda": false
+        },
+        "metadata": {}
+    }
+}

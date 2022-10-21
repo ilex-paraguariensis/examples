@@ -1,0 +1,83 @@
+{
+    "name": "",
+    "description": "",
+    "version": "",
+    "author": "",
+    "license": "",
+    "url": "mnist/data_loaders/mnist/",
+    "category": "",
+    "backbone": "",
+    "module_path": [
+        "data_loaders",
+        "mnist"
+    ],
+    "type": "data_loaders",
+    "exports": {
+        "classes": [],
+        "functions": [
+            {
+                "function_name": "mnist",
+                "module": "data_loaders.mnist",
+                "params": {
+                    "permute_train": false
+                },
+                "samples": [
+                    {
+                        "sample": {
+                            "module": "data_loaders.mnist.datasets",
+                            "function": "mnist",
+                            "object_key": "data",
+                            "params": {
+                                "permute_train": true
+                            }
+                        },
+                        "experiment": {
+                            "data": {
+                                "module": "data_loaders.mnist.datasets",
+                                "function": "mnist",
+                                "object_key": "data",
+                                "params": {
+                                    "permute_train": true
+                                }
+                            },
+                            "train_function": {
+                                "module": "models.cnn.mnist_classifier",
+                                "function": "train",
+                                "params": {
+                                    "datasets": "{data}",
+                                    "step_size": 0.001,
+                                    "num_epochs": 10,
+                                    "batch_size": 128,
+                                    "momentum_mass": 0.9
+                                }
+                            }
+                        }
+                    }
+                ],
+                "returns": {
+                    "class": "<class 'tuple'>",
+                    "module": "builtins",
+                    "mro": [
+                        "<class 'tuple'>",
+                        "<class 'object'>"
+                    ],
+                    "return": [
+                        null,
+                        null,
+                        null,
+                        null
+                    ]
+                }
+            }
+        ]
+    },
+    "dependencies": {
+        "pip": [
+            {
+                "name": "numpy",
+                "version": "1.23.3",
+                "lastVersion": "1.23.4"
+            }
+        ]
+    }
+}

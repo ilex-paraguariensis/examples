@@ -225,7 +225,16 @@
                             }
                         }
                     }
-                ]
+                ],
+                "returns": {
+                    "class": "<class 'resnet_cifar10.models.resnet.resnet.ResNet'>",
+                    "module": "resnet_cifar10.models.resnet.resnet",
+                    "mro": [
+                        "<class 'resnet_cifar10.models.resnet.resnet.ResNet'>",
+                        "<class 'torch.nn.modules.module.Module'>",
+                        "<class 'object'>"
+                    ]
+                }
             }
         ],
         "functions": []

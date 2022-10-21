@@ -1,0 +1,100 @@
+{
+    "name": "",
+    "description": "",
+    "version": "",
+    "author": "",
+    "license": "",
+    "url": "mnist/models/cnn/",
+    "category": "",
+    "backbone": "",
+    "module_path": [
+        "models",
+        "cnn"
+    ],
+    "type": "models",
+    "exports": {
+        "classes": [],
+        "functions": [
+            {
+                "function_name": "train",
+                "module": "models.cnn",
+                "params": {
+                    "datasets": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
+                    },
+                    "step_size": 0.001,
+                    "num_epochs": 10,
+                    "batch_size": 128,
+                    "momentum_mass": 0.9
+                },
+                "samples": [
+                    {
+                        "sample": {
+                            "module": "models.cnn.mnist_classifier",
+                            "function": "train",
+                            "params": {
+                                "datasets": "{data}",
+                                "step_size": 0.001,
+                                "num_epochs": 10,
+                                "batch_size": 128,
+                                "momentum_mass": 0.9
+                            }
+                        },
+                        "experiment": {
+                            "data": {
+                                "module": "data_loaders.mnist.datasets",
+                                "function": "mnist",
+                                "object_key": "data",
+                                "params": {
+                                    "permute_train": true
+                                }
+                            },
+                            "train_function": {
+                                "module": "models.cnn.mnist_classifier",
+                                "function": "train",
+                                "params": {
+                                    "datasets": "{data}",
+                                    "step_size": 0.001,
+                                    "num_epochs": 10,
+                                    "batch_size": 128,
+                                    "momentum_mass": 0.9
+                                }
+                            }
+                        }
+                    }
+                ],
+                "errors": [
+                    "Missing parameter datasets. Hint: Add a default value or type annotation"
+                ],
+                "returns": {
+                    "class": "<class 'NoneType'>",
+                    "module": "builtins",
+                    "mro": [
+                        "<class 'NoneType'>",
+                        "<class 'object'>"
+                    ]
+                }
+            }
+        ]
+    },
+    "dependencies": {
+        "pip": [
+            {
+                "name": "numpy",
+                "version": "1.23.3",
+                "lastVersion": "1.23.4"
+            },
+            {
+                "name": "ipdb",
+                "version": "0.13.9",
+                "lastVersion": "0.13.9"
+            },
+            {
+                "name": "jax",
+                "version": "0.3.23",
+                "lastVersion": "0.3.23"
+            }
+        ]
+    }
+}

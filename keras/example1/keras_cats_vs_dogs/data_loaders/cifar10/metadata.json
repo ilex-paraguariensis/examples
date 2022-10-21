@@ -1,0 +1,129 @@
+{
+    "name": "",
+    "description": "",
+    "version": "",
+    "author": "",
+    "license": "",
+    "url": "keras_cats_vs_dogs/data_loaders/cifar10/",
+    "category": "",
+    "backbone": "",
+    "module_path": [
+        "data_loaders",
+        "cifar10"
+    ],
+    "type": "data_loaders",
+    "exports": {
+        "classes": [],
+        "functions": [
+            {
+                "function_name": "get_train_data_loader",
+                "module": "data_loaders.cifar10",
+                "params": {
+                    "batch_size": 32
+                },
+                "samples": [
+                    {
+                        "sample": {
+                            "module": "data_loaders.cifar10.data_loader",
+                            "function": "get_train_data_loader",
+                            "object_key": "data",
+                            "params": {
+                                "batch_size": 128
+                            }
+                        },
+                        "experiment": {
+                            "data": {
+                                "module": "data_loaders.cifar10.data_loader",
+                                "function": "get_train_data_loader",
+                                "object_key": "data",
+                                "params": {
+                                    "batch_size": 128
+                                }
+                            },
+                            "trainer": {
+                                "module": "models.resnet.resnet",
+                                "function": "get_model",
+                                "params": {
+                                    "input_shape": [
+                                        180,
+                                        180,
+                                        3
+                                    ],
+                                    "num_classes": 2
+                                },
+                                "object_key": "model",
+                                "method_args": [
+                                    {
+                                        "function": "compile",
+                                        "params": {
+                                            "optimizer": {
+                                                "module": "tensorflow.keras.optimizers",
+                                                "class_name": "Adam",
+                                                "params": {
+                                                    "learning_rate": 0.001
+                                                }
+                                            },
+                                            "loss": "binary_crossentropy",
+                                            "metrics": [
+                                                "accuracy"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "function": "fit",
+                                        "params": {
+                                            "": "{data}",
+                                            "epochs": 10
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "returns": {
+                    "class": "<class 'tensorflow.python.data.ops.dataset_ops.PrefetchDataset'>",
+                    "module": "tensorflow.python.data.ops.dataset_ops",
+                    "mro": [
+                        "<class 'tensorflow.python.data.ops.dataset_ops.PrefetchDataset'>",
+                        "<class 'tensorflow.python.data.ops.dataset_ops.UnaryUnchangedStructureDataset'>",
+                        "<class 'tensorflow.python.data.ops.dataset_ops.UnaryDataset'>",
+                        "<class 'tensorflow.python.data.ops.dataset_ops.DatasetV2'>",
+                        "<class 'collections.abc.Iterable'>",
+                        "<class 'tensorflow.python.trackable.base.Trackable'>",
+                        "<class 'tensorflow.python.framework.composite_tensor.CompositeTensor'>",
+                        "<class 'object'>"
+                    ]
+                }
+            }
+        ]
+    },
+    "dependencies": {
+        "pip": [
+            {
+                "name": "torchvision",
+                "version": "0.13.1+cu116",
+                "lastVersion": "0.13.1"
+            },
+            {
+                "name": "ipdb",
+                "version": "0.13.9",
+                "lastVersion": "0.13.9"
+            },
+            {
+                "name": "pytorch_lightning",
+                "version": "1.7.5",
+                "lastVersion": "1.7.7"
+            },
+            {
+                "name": "tensorflow_gpu",
+                "version": "2.10.0"
+            },
+            {
+                "name": "torch",
+                "version": "1.12.1+cu116",
+                "lastVersion": "1.12.1"
+            }
+        ]
+    }
+}
