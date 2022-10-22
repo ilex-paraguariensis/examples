@@ -4,7 +4,7 @@
     "version": "",
     "author": "",
     "license": "",
-    "url": "git@github.com:ilex-paraguariensis/examples.gitmnist/models/cnn/",
+    "url": "https://github.com/ilex-paraguariensis/examplesmnist/models/cnn/",
     "category": "",
     "backbone": "",
     "module_path": [
@@ -67,34 +67,26 @@
                 ],
                 "errors": [
                     "Missing parameter datasets. Hint: Add a default value or type annotation"
-                ],
-                "returns": {
-                    "class": "<class 'NoneType'>",
-                    "module": "builtins",
-                    "mro": [
-                        "<class 'NoneType'>",
-                        "<class 'object'>"
-                    ]
-                }
+                ]
             }
         ]
     },
     "dependencies": {
         "pip": [
             {
+                "name": "ipdb",
+                "version": "0.13.9",
+                "lastVersion": "0.13.9"
+            },
+            {
                 "name": "jax",
-                "version": "0.3.23",
+                "version": "0.3.17",
                 "lastVersion": "0.3.23"
             },
             {
                 "name": "numpy",
                 "version": "1.23.3",
                 "lastVersion": "1.23.4"
-            },
-            {
-                "name": "ipdb",
-                "version": "0.13.9",
-                "lastVersion": "0.13.9"
             }
         ]
     }

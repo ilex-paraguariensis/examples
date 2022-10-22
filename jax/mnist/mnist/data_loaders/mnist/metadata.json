@@ -4,7 +4,7 @@
     "version": "",
     "author": "",
     "license": "",
-    "url": "git@github.com:ilex-paraguariensis/examples.gitmnist/data_loaders/mnist/",
+    "url": "https://github.com/ilex-paraguariensis/examplesmnist/data_loaders/mnist/",
     "category": "",
     "backbone": "",
     "module_path": [
@@ -54,53 +54,7 @@
                             }
                         }
                     }
-                ],
-                "returns": {
-                    "class": "<class 'tuple'>",
-                    "module": "builtins",
-                    "mro": [
-                        "<class 'tuple'>",
-                        "<class 'object'>"
-                    ],
-                    "return": [
-                        {
-                            "class": "<class 'numpy.ndarray'>",
-                            "module": "numpy",
-                            "mro": [
-                                "<class 'numpy.ndarray'>",
-                                "<class 'object'>"
-                            ],
-                            "shape": "(60000, 784)"
-                        },
-                        {
-                            "class": "<class 'numpy.ndarray'>",
-                            "module": "numpy",
-                            "mro": [
-                                "<class 'numpy.ndarray'>",
-                                "<class 'object'>"
-                            ],
-                            "shape": "(60000, 10)"
-                        },
-                        {
-                            "class": "<class 'numpy.ndarray'>",
-                            "module": "numpy",
-                            "mro": [
-                                "<class 'numpy.ndarray'>",
-                                "<class 'object'>"
-                            ],
-                            "shape": "(10000, 784)"
-                        },
-                        {
-                            "class": "<class 'numpy.ndarray'>",
-                            "module": "numpy",
-                            "mro": [
-                                "<class 'numpy.ndarray'>",
-                                "<class 'object'>"
-                            ],
-                            "shape": "(10000, 10)"
-                        }
-                    ]
-                }
+                ]
             }
         ]
     },
