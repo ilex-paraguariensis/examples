@@ -12,6 +12,7 @@
         "augmentations",
         "simple"
     ],
+    "hash": "9669ee45531ca8d0d7460e121ea7871a18e8c0e7",
     "type": "data",
     "exports": {
         "classes": [],
@@ -43,7 +44,7 @@
         "pip": [
             {
                 "name": "torchvision",
-                "version": "0.13.1",
+                "version": "0.13.1+cu116",
                 "lastVersion": "0.13.1"
             }
         ]

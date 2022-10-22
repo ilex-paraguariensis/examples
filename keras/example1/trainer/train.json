@@ -1,0 +1,69 @@
+{
+    "data": {
+        "function": "get_train_data_loader",
+        "module": "data_loaders.cifar10.data_loader",
+        "params": {
+            "batch_size": 128
+        }
+    },
+    "trainer": {
+        "function": "get_model",
+        "module": "models.resnet.resnet",
+        "method_args": [
+            {
+                "function": "compile",
+                "params": {
+                    "optimizer": {
+                        "module": "tensorflow.keras.optimizers",
+                        "class_name": "Adam",
+                        "params": {
+                            "learning_rate": 0.001,
+                            "beta_1": 0.9,
+                            "beta_2": 0.999,
+                            "epsilon": 1e-07,
+                            "amsgrad": false,
+                            "name": "Adam"
+                        }
+                    },
+                    "loss": "binary_crossentropy",
+                    "metrics": [
+                        "accuracy"
+                    ]
+                }
+            },
+            {
+                "function": "fit",
+                "params": {
+                    "": "{data}",
+                    "epochs": 10,
+                    "verbose": "auto",
+                    "validation_split": 0.0,
+                    "shuffle": true,
+                    "initial_epoch": 0,
+                    "validation_freq": 1,
+                    "max_queue_size": 10,
+                    "workers": 1,
+                    "use_multiprocessing": false
+                }
+            }
+        ],
+        "params": {
+            "input_shape": [
+                180,
+                180,
+                3
+            ],
+            "num_classes": 2
+        }
+    },
+    "mate": {
+        "project": "keras_cats_vs_dogs",
+        "mate_version": "0.2.5",
+        "results_folder": "./results",
+        "override_params": {
+            "enabled": false,
+            "cuda": false
+        },
+        "metadata": {}
+    }
+}

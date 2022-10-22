@@ -1,7 +1,6 @@
 from argparse import Namespace
 from pytorch_lightning import LightningModule
 import torch as t
-import mate
 import ipdb
 from aim import Run
 

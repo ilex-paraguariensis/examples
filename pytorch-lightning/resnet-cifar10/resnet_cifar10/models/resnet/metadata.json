@@ -11,6 +11,7 @@
         "models",
         "resnet"
     ],
+    "hash": "aa1ee66e1618eb5614ee7c6fa9ebd0e7a29d9ccc",
     "type": "models",
     "exports": {
         "classes": [
@@ -225,7 +226,16 @@
                             }
                         }
                     }
-                ]
+                ],
+                "returns": {
+                    "class": "<class 'resnet_cifar10.models.resnet.resnet.ResNet'>",
+                    "module": "resnet_cifar10.models.resnet.resnet",
+                    "mro": [
+                        "<class 'resnet_cifar10.models.resnet.resnet.ResNet'>",
+                        "<class 'torch.nn.modules.module.Module'>",
+                        "<class 'object'>"
+                    ]
+                }
             }
         ],
         "functions": []
@@ -234,7 +244,7 @@
         "pip": [
             {
                 "name": "torch",
-                "version": "1.13.0.dev20220928+cu116",
+                "version": "1.12.1+cu116",
                 "lastVersion": "1.12.1"
             }
         ]

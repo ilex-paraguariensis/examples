@@ -12,6 +12,7 @@
         "loaders",
         "cifar10"
     ],
+    "hash": "dbba968b2ac90c50cd5c366ca73445a9109d7d75",
     "type": "data",
     "exports": {
         "classes": [
@@ -203,7 +204,19 @@
                     "Missing parameter location.  Hint: <class 'str'>",
                     "Missing parameter batch_size.  Hint: <class 'int'>",
                     "Missing parameter image_size.  Hint: <class 'array.array'>"
-                ]
+                ],
+                "returns": {
+                    "class": "<class 'resnet_cifar10.data.loaders.cifar10.data_loader.CifarLightningDataModule'>",
+                    "module": "resnet_cifar10.data.loaders.cifar10.data_loader",
+                    "mro": [
+                        "<class 'resnet_cifar10.data.loaders.cifar10.data_loader.CifarLightningDataModule'>",
+                        "<class 'pytorch_lightning.core.datamodule.LightningDataModule'>",
+                        "<class 'pytorch_lightning.core.hooks.CheckpointHooks'>",
+                        "<class 'pytorch_lightning.core.hooks.DataHooks'>",
+                        "<class 'pytorch_lightning.core.mixins.hparams_mixin.HyperparametersMixin'>",
+                        "<class 'object'>"
+                    ]
+                }
             }
         ],
         "functions": []
@@ -211,19 +224,19 @@
     "dependencies": {
         "pip": [
             {
-                "name": "torch",
-                "version": "1.13.0.dev20220928+cu116",
-                "lastVersion": "1.12.1"
-            },
-            {
                 "name": "torchvision",
-                "version": "0.13.1",
+                "version": "0.13.1+cu116",
                 "lastVersion": "0.13.1"
             },
             {
                 "name": "pytorch_lightning",
-                "version": "1.7.7",
+                "version": "1.7.5",
                 "lastVersion": "1.7.7"
+            },
+            {
+                "name": "torch",
+                "version": "1.12.1+cu116",
+                "lastVersion": "1.12.1"
             },
             {
                 "name": "ipdb",
