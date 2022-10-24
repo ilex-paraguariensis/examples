@@ -5,19 +5,10 @@
     "author": "",
     "authors": [],
     "license": "",
-<<<<<<< HEAD
     "url": "https//github.com/ilex-paraguariensis/examples/tree/main/jax/mnist/mnist/models/cnn/",
-=======
-    "url": "https://github.com/ilex-paraguariensis/examplesmnist/models/cnn/",
-    "category": "",
-    "backbone": "",
-    "module_path": [
-        "models",
-        "cnn"
+    "experiments": [
+        "mnist"
     ],
-    "hash": "ddf95b1b8ae92d94c47b4f7e6c75cc171366b64a",
-    "type": "models",
->>>>>>> origin/main
     "exports": {
         "classes": [],
         "functions": [
@@ -87,35 +78,19 @@
     "dependencies": {
         "pip": [
             {
-<<<<<<< HEAD
                 "name": "numpy",
-                "version": "1.23.4",
+                "version": "1.23.3",
                 "last_version": "1.23.4"
-            },
-            {
-                "name": "jax",
-                "version": "0.3.23",
-                "last_version": "0.3.23"
             },
             {
                 "name": "ipdb",
                 "version": "0.13.9",
                 "last_version": "0.13.9"
-=======
-                "name": "ipdb",
-                "version": "0.13.9",
-                "lastVersion": "0.13.9"
             },
             {
                 "name": "jax",
                 "version": "0.3.17",
-                "lastVersion": "0.3.23"
-            },
-            {
-                "name": "numpy",
-                "version": "1.23.3",
-                "lastVersion": "1.23.4"
->>>>>>> origin/main
+                "last_version": "0.3.23"
             }
         ]
     }
