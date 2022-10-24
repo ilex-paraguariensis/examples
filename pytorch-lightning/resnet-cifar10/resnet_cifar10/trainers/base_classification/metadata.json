@@ -4,14 +4,14 @@
     "version": "0.1.0",
     "author": "Mate",
     "license": "MIT",
-    "url": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/trainers/base_classification/",
+    "url": "https//github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/trainers/base_classification/",
     "category": "classification",
     "backbone": "pytorch_lightning",
     "module_path": [
         "trainers",
         "base_classification"
     ],
-    "hash": "52b47cc0ce070cd161c47b8d83ce8c389cbe2dcd",
+    "hash": "721b4f4d647516222690860434ad5658f6da4241",
     "type": "trainers",
     "exports": {
         "classes": [
@@ -277,8 +277,14 @@
         ],
         "functions": []
     },
+    "history_url": [],
     "dependencies": {
         "pip": [
+            {
+                "name": "torch",
+                "version": "1.12.1+cu116",
+                "lastVersion": "1.12.1"
+            },
             {
                 "name": "aim",
                 "version": "3.14.1",
@@ -288,11 +294,6 @@
                 "name": "pytorch_lightning",
                 "version": "1.7.5",
                 "lastVersion": "1.7.7"
-            },
-            {
-                "name": "torch",
-                "version": "1.12.1+cu116",
-                "lastVersion": "1.12.1"
             },
             {
                 "name": "ipdb",

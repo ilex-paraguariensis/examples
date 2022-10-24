@@ -8,6 +8,7 @@ class LightningClassificationModule(LightningModule):
     def __init__(self, classifier: t.nn.Module, optimizers:dict[str, t.optim.Optimizer]):
         super().__init__()
 
+
         # self.params = params
         # self.save_hyperparameters(params)
         self.criterion = t.nn.CrossEntropyLoss()

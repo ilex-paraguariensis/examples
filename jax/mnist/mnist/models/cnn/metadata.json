@@ -3,16 +3,9 @@
     "description": "",
     "version": "",
     "author": "",
+    "authors": [],
     "license": "",
-    "url": "git@github.com:ilex-paraguariensis/examples.gitmnist/models/cnn/",
-    "category": "",
-    "backbone": "",
-    "module_path": [
-        "models",
-        "cnn"
-    ],
-    "hash": "ddf95b1b8ae92d94c47b4f7e6c75cc171366b64a",
-    "type": "models",
+    "url": "https//github.com/ilex-paraguariensis/examples/tree/main/jax/mnist/mnist/models/cnn/",
     "exports": {
         "classes": [],
         "functions": [
@@ -67,34 +60,34 @@
                 ],
                 "errors": [
                     "Missing parameter datasets. Hint: Add a default value or type annotation"
-                ],
-                "returns": {
-                    "class": "<class 'NoneType'>",
-                    "module": "builtins",
-                    "mro": [
-                        "<class 'NoneType'>",
-                        "<class 'object'>"
-                    ]
-                }
+                ]
             }
         ]
     },
+    "category": "",
+    "backbone": "",
+    "module_path": [
+        "models",
+        "cnn"
+    ],
+    "hash": "ddf95b1b8ae92d94c47b4f7e6c75cc171366b64a",
+    "type": "models",
     "dependencies": {
         "pip": [
             {
-                "name": "jax",
-                "version": "0.3.23",
-                "lastVersion": "0.3.23"
+                "name": "numpy",
+                "version": "1.23.4",
+                "last_version": "1.23.4"
             },
             {
-                "name": "numpy",
-                "version": "1.23.3",
-                "lastVersion": "1.23.4"
+                "name": "jax",
+                "version": "0.3.23",
+                "last_version": "0.3.23"
             },
             {
                 "name": "ipdb",
                 "version": "0.13.9",
-                "lastVersion": "0.13.9"
+                "last_version": "0.13.9"
             }
         ]
     }

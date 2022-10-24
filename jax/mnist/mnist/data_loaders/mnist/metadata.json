@@ -3,16 +3,9 @@
     "description": "",
     "version": "",
     "author": "",
+    "authors": [],
     "license": "",
-    "url": "git@github.com:ilex-paraguariensis/examples.gitmnist/data_loaders/mnist/",
-    "category": "",
-    "backbone": "",
-    "module_path": [
-        "data_loaders",
-        "mnist"
-    ],
-    "hash": "57d703c18562453ecb9401b6aff68a03f65fa2e0",
-    "type": "data_loaders",
+    "url": "https//github.com/ilex-paraguariensis/examples/tree/main/jax/mnist/mnist/data_loaders/mnist/",
     "exports": {
         "classes": [],
         "functions": [
@@ -54,62 +47,24 @@
                             }
                         }
                     }
-                ],
-                "returns": {
-                    "class": "<class 'tuple'>",
-                    "module": "builtins",
-                    "mro": [
-                        "<class 'tuple'>",
-                        "<class 'object'>"
-                    ],
-                    "return": [
-                        {
-                            "class": "<class 'numpy.ndarray'>",
-                            "module": "numpy",
-                            "mro": [
-                                "<class 'numpy.ndarray'>",
-                                "<class 'object'>"
-                            ],
-                            "shape": "(60000, 784)"
-                        },
-                        {
-                            "class": "<class 'numpy.ndarray'>",
-                            "module": "numpy",
-                            "mro": [
-                                "<class 'numpy.ndarray'>",
-                                "<class 'object'>"
-                            ],
-                            "shape": "(60000, 10)"
-                        },
-                        {
-                            "class": "<class 'numpy.ndarray'>",
-                            "module": "numpy",
-                            "mro": [
-                                "<class 'numpy.ndarray'>",
-                                "<class 'object'>"
-                            ],
-                            "shape": "(10000, 784)"
-                        },
-                        {
-                            "class": "<class 'numpy.ndarray'>",
-                            "module": "numpy",
-                            "mro": [
-                                "<class 'numpy.ndarray'>",
-                                "<class 'object'>"
-                            ],
-                            "shape": "(10000, 10)"
-                        }
-                    ]
-                }
+                ]
             }
         ]
     },
+    "category": "",
+    "backbone": "",
+    "module_path": [
+        "data_loaders",
+        "mnist"
+    ],
+    "hash": "57d703c18562453ecb9401b6aff68a03f65fa2e0",
+    "type": "data_loaders",
     "dependencies": {
         "pip": [
             {
                 "name": "numpy",
-                "version": "1.23.3",
-                "lastVersion": "1.23.4"
+                "version": "1.23.4",
+                "last_version": "1.23.4"
             }
         ]
     }

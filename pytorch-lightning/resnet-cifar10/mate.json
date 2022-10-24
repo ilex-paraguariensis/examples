@@ -1,21 +1,83 @@
 {
     "project": "resnet_cifar10",
+    "mate_version": "0.2.5",
+    "results_folder": "./results",
     "override_params": {
         "enabled": false,
         "cuda": false
     },
-    "results_folder": "./results",
-    "mate_version": "0.2.5",
+    "restarting": false,
     "metadata": {
         "name": "resnet_cifar10",
         "description": "ResNet on CIFAR10",
-        "author": "Mate",
-        "email": "yerbamate.dl@pm.me",
-        "license": "MIT",
-        "url": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/",
         "version": "0.1.0",
-        "category": "classification",
-        "type": "project",
-        "backbone": "pytorch_lightning"
+        "author": "Mate",
+        "authors": [],
+        "license": "MIT",
+        "url": "https//github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/",
+        "experiments": [
+            "fine_tune",
+            "default"
+        ],
+        "dependencies": {
+            "pip": [
+                {
+                    "name": "torchvision",
+                    "version": "0.13.1+cu116"
+                },
+                {
+                    "name": "aim",
+                    "version": "3.14.1"
+                },
+                {
+                    "name": "numpy",
+                    "version": "1.23.4"
+                },
+                {
+                    "name": "pytorch_lightning",
+                    "version": "1.7.5"
+                },
+                {
+                    "name": "ipdb",
+                    "version": "0.13.9"
+                },
+                {
+                    "name": "accelerate",
+                    "version": "0.13.1"
+                },
+                {
+                    "name": "torch",
+                    "version": "1.12.1+cu116"
+                },
+                {
+                    "name": "einops",
+                    "version": "0.4.1"
+                },
+                {
+                    "name": "tqdm",
+                    "version": "4.64.1"
+                }
+            ]
+        },
+        "exports": {
+            "models": {
+                "resnet": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/models/resnet/",
+                "diffusion": "https://github.com/ilex-paraguariensis/denoising-diffusion-pytorch/tree/main/diffusion/models/diffusion/"
+            },
+            "trainers": {
+                "base_classification": "https//github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/trainers/base_classification/"
+            },
+            "data": {
+                "augmentations": {
+                    "simple": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/data/augmentations/simple/"
+                },
+                "loaders": {
+                    "cifar10": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/data/loaders/cifar10/"
+                },
+                "pl_module": {
+                    "mmnist": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/data/pl_module/mmnist/"
+                }
+            }
+        }
     }
 }
