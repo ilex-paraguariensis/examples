@@ -3,51 +3,53 @@
     "description": "ResNet on CIFAR10",
     "version": "0.1.0",
     "author": "Mate",
-    "authors": [],
+    "authors": [
+        "Guilio",
+        "Ali"
+    ],
     "license": "MIT",
     "url": "https//github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/",
     "experiments": [
         "fine_tune",
-        "default",
-        "pl_trainer"
+        "default"
     ],
     "dependencies": {
         "pip": [
             {
-                "name": "einops",
-                "version": "0.4.1"
-            },
-            {
-                "name": "pytorch_lightning",
-                "version": "1.7.5"
-            },
-            {
                 "name": "aim",
                 "version": "3.14.1"
-            },
-            {
-                "name": "torch",
-                "version": "1.12.1+cu116"
-            },
-            {
-                "name": "torchvision",
-                "version": "0.13.1+cu116"
             },
             {
                 "name": "ipdb",
                 "version": "0.13.9"
             },
             {
+                "name": "accelerate",
+                "version": "0.13.1"
+            },
+            {
                 "name": "numpy",
                 "version": "1.23.4"
+            },
+            {
+                "name": "pytorch_lightning",
+                "version": "1.7.5"
+            },
+            {
+                "name": "einops",
+                "version": "0.4.1"
+            },
+            {
+                "name": "torch",
+                "version": "1.12.1+cu116"
             },
             {
                 "name": "tqdm",
                 "version": "4.64.1"
             },
             {
-                "name": "accelerate",
-                "version": "0.13.1"
+                "name": "torchvision",
+                "version": "0.13.1+cu116"
             }
         ]
     },
@@ -299,7 +301,8 @@
                                 }
                             }
                         }
-                    }
+                    },
+                    "nro": "Fix me!"
                 },
                 "docs": {}
             },
@@ -556,7 +559,10 @@
                     "multiple_trainloader_mode": "max_size_cycle"
                 },
                 "docs": {}
-            }
+            },
+            "errors": [
+                "Missing parameter nro. Hint: Add a default value or type annotation"
+            ]
         },
         []
     ]

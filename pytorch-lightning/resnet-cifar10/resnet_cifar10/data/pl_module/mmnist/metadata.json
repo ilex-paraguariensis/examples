@@ -1,0 +1,109 @@
+{
+    "name": "resnet_cifar10",
+    "description": "ResNet on CIFAR10",
+    "version": "0.1.0",
+    "author": "Mate",
+    "authors": [],
+    "license": "MIT",
+    "url": "https//github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/data/pl_module/mmnist/",
+    "exports": {
+        "classes": [
+            {
+                "class_name": "CustomDataModule",
+                "module": "data.pl_module.mmnist",
+                "params": {
+                    "data_location": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
+                    },
+                    "train_batch_size": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
+                    },
+                    "test_batch_size": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
+                    },
+                    "in_seq_len": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
+                    },
+                    "out_seq_len": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
+                    },
+                    "image_size": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
+                    }
+                },
+                "errors": [
+                    "Missing parameter data_location. Hint: Add a default value or type annotation",
+                    "Missing parameter train_batch_size. Hint: Add a default value or type annotation",
+                    "Missing parameter test_batch_size. Hint: Add a default value or type annotation",
+                    "Missing parameter in_seq_len. Hint: Add a default value or type annotation",
+                    "Missing parameter out_seq_len. Hint: Add a default value or type annotation",
+                    "Missing parameter image_size. Hint: Add a default value or type annotation"
+                ]
+            },
+            {
+                "class_name": "MovingMNIST",
+                "module": "data.pl_module.mmnist",
+                "params": {
+                    "root": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
+                    },
+                    "image_size": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
+                    },
+                    "is_train": true,
+                    "n_frames_input": 10,
+                    "n_frames_output": 10,
+                    "num_objects": [
+                        2
+                    ]
+                },
+                "errors": [
+                    "Missing parameter root. Hint: Add a default value or type annotation",
+                    "Missing parameter image_size. Hint: Add a default value or type annotation"
+                ]
+            }
+        ],
+        "functions": []
+    },
+    "category": "",
+    "backbone": "",
+    "module_path": [
+        "data",
+        "pl_module",
+        "mmnist"
+    ],
+    "hash": "304c7194a3481255b8bd88f1907102e4059314dc",
+    "type": "data",
+    "dependencies": {
+        "pip": [
+            {
+                "name": "numpy",
+                "version": "1.23.4",
+                "last_version": "1.23.4"
+            },
+            {
+                "name": "pytorch_lightning",
+                "version": "1.7.5",
+                "last_version": "1.7.7"
+            },
+            {
+                "name": "torch",
+                "version": "1.12.1+cu116",
+                "last_version": "1.12.1"
+            },
+            {
+                "name": "ipdb",
+                "version": "0.13.9",
+                "last_version": "0.13.9"
+            }
+        ]
+    }
+}

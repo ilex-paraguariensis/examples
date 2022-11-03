@@ -88,8 +88,7 @@
                         }
                     }
                 }
-            },
-            "nro": "Fix me!"
+            }
         }
     },
     "trainer": {
@@ -164,8 +163,5 @@
             "move_metrics_to_cpu": false,
             "multiple_trainloader_mode": "max_size_cycle"
         }
-    },
-    "errors": [
-        "Missing parameter nro. Hint: Add a default value or type annotation"
-    ]
+    }
 }

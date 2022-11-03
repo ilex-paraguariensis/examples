@@ -19,10 +19,6 @@
                     "optimizers": {
                         "class": "dict",
                         "module": "builtins"
-                    },
-                    "nro": {
-                        "type": "unknown",
-                        "description": "Unknown type, please add a type annotation or sample value"
                     }
                 },
                 "samples": [
@@ -272,34 +268,14 @@
                                     "move_metrics_to_cpu": false,
                                     "multiple_trainloader_mode": "max_size_cycle"
                                 }
-                            },
-                            "errors": [
-                                "Missing parameter nro. Hint: Add a default value or type annotation"
-                            ]
+                            }
                         }
                     }
                 ],
                 "errors": [
                     "Missing parameter classifier.  Hint: <class 'torch.nn.modules.module.Module'>",
-                    "Missing parameter optimizers.  Hint: dict[str, torch.optim.optimizer.Optimizer]",
-                    "Missing parameter nro. Hint: Add a default value or type annotation"
-                ],
-                "returns": {
-                    "class": "<class 'resnet_cifar10.trainers.base_classification.base_classification.LightningClassificationModule'>",
-                    "module": "resnet_cifar10.trainers.base_classification.base_classification",
-                    "mro": [
-                        "<class 'resnet_cifar10.trainers.base_classification.base_classification.LightningClassificationModule'>",
-                        "<class 'pytorch_lightning.core.module.LightningModule'>",
-                        "<class 'pytorch_lightning.core.mixins.device_dtype_mixin.DeviceDtypeModuleMixin'>",
-                        "<class 'pytorch_lightning.core.mixins.hparams_mixin.HyperparametersMixin'>",
-                        "<class 'pytorch_lightning.core.saving.ModelIO'>",
-                        "<class 'pytorch_lightning.core.hooks.ModelHooks'>",
-                        "<class 'pytorch_lightning.core.hooks.DataHooks'>",
-                        "<class 'pytorch_lightning.core.hooks.CheckpointHooks'>",
-                        "<class 'torch.nn.modules.module.Module'>",
-                        "<class 'object'>"
-                    ]
-                }
+                    "Missing parameter optimizers.  Hint: dict[str, torch.optim.optimizer.Optimizer]"
+                ]
             }
         ],
         "functions": []
@@ -310,29 +286,29 @@
         "trainers",
         "base_classification"
     ],
-    "hash": "e00e815df57f48c8ddf718691463f17dd8dca623",
+    "hash": "721b4f4d647516222690860434ad5658f6da4241",
     "type": "trainers",
     "dependencies": {
         "pip": [
             {
                 "name": "pytorch_lightning",
                 "version": "1.7.5",
-                "last_version": "1.7.7"
+                "last_version": "1.8.0.post1"
             },
             {
                 "name": "aim",
                 "version": "3.14.1",
-                "last_version": "3.14.1"
-            },
-            {
-                "name": "torch",
-                "version": "1.12.1+cu116",
-                "last_version": "1.12.1"
+                "last_version": "3.14.3"
             },
             {
                 "name": "ipdb",
                 "version": "0.13.9",
                 "last_version": "0.13.9"
+            },
+            {
+                "name": "torch",
+                "version": "1.12.1+cu116",
+                "last_version": "1.13.0"
             }
         ]
     }

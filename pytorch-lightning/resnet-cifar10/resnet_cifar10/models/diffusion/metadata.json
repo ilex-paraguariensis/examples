@@ -1,0 +1,84 @@
+{
+    "name": "resnet_cifar10",
+    "description": "ResNet on CIFAR10",
+    "version": "0.1.0",
+    "author": "Mate",
+    "authors": [],
+    "license": "MIT",
+    "url": "https//github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/models/diffusion/",
+    "exports": {
+        "classes": [
+            {
+                "class_name": "GaussianDiffusion",
+                "module": "models.diffusion",
+                "params": {
+                    "model": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
+                    }
+                },
+                "errors": [
+                    "Missing parameter model. Hint: Add a default value or type annotation"
+                ]
+            },
+            {
+                "class_name": "Unet",
+                "module": "models.diffusion",
+                "params": {
+                    "dim": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
+                    },
+                    "dim_mults": [
+                        1,
+                        2,
+                        4,
+                        8
+                    ],
+                    "channels": 3,
+                    "self_condition": false,
+                    "resnet_block_groups": 8,
+                    "learned_variance": false,
+                    "learned_sinusoidal_cond": false,
+                    "learned_sinusoidal_dim": 16
+                },
+                "errors": [
+                    "Missing parameter dim. Hint: Add a default value or type annotation"
+                ]
+            }
+        ],
+        "functions": []
+    },
+    "category": "",
+    "backbone": "",
+    "module_path": [
+        "models",
+        "diffusion"
+    ],
+    "hash": "8d47af121689f4d0c7953ddca6691406ee376573",
+    "type": "models",
+    "dependencies": {
+        "pip": [
+            {
+                "name": "accelerate",
+                "version": "0.13.1",
+                "last_version": "0.13.2"
+            },
+            {
+                "name": "einops",
+                "version": "0.4.1",
+                "last_version": "0.5.0"
+            },
+            {
+                "name": "torch",
+                "version": "1.12.1+cu116",
+                "last_version": "1.12.1"
+            },
+            {
+                "name": "tqdm",
+                "version": "4.64.1",
+                "last_version": "4.64.1"
+            }
+        ]
+    }
+}
