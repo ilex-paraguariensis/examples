@@ -1,9 +1,56 @@
 {
     "project": "keras_cats_vs_dogs",
+    "mate_version": "0.2.5",
+    "results_folder": "./results",
     "override_params": {
         "enabled": false,
         "cuda": false
     },
-    "results_folder": "./results",
-    "mate_version": "0.2.5"
-}   
+    "restarting": false,
+    "metadata": {
+        "name": "",
+        "description": "",
+        "version": "",
+        "author": "",
+        "authors": [],
+        "license": "",
+        "url": "https//github.com/ilex-paraguariensis/examples/tree/main/keras/example1/",
+        "experiments": [
+            "resnet"
+        ],
+        "dependencies": {
+            "pip": [
+                {
+                    "name": "ipdb",
+                    "version": "0.13.9"
+                },
+                {
+                    "name": "torchvision",
+                    "version": "0.13.1+cu116"
+                },
+                {
+                    "name": "pytorch_lightning",
+                    "version": "1.7.5"
+                },
+                {
+                    "name": "torch",
+                    "version": "1.12.1+cu116"
+                },
+                {
+                    "name": "tensorflow_gpu",
+                    "version": "2.10.0"
+                }
+            ]
+        },
+        "exports": {
+            "data_loaders": {
+                "cifar10": "https//github.com/ilex-paraguariensis/examples/tree/main/keras/example1/keras_cats_vs_dogs/data_loaders/cifar10/"
+            },
+            "models": {
+                "resnet": "https//github.com/ilex-paraguariensis/examples/tree/main/keras/example1/keras_cats_vs_dogs/models/resnet/"
+            },
+            "trainers": {},
+            "data": {}
+        }
+    }
+}

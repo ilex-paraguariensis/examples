@@ -1,0 +1,567 @@
+{
+    "name": "resnet_cifar10",
+    "description": "ResNet on CIFAR10",
+    "version": "0.1.0",
+    "author": "Mate",
+    "authors": [],
+    "license": "MIT",
+    "url": "https//github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/",
+    "experiments": [
+        "fine_tune",
+        "default",
+        "pl_trainer"
+    ],
+    "dependencies": {
+        "pip": [
+            {
+                "name": "einops",
+                "version": "0.4.1"
+            },
+            {
+                "name": "pytorch_lightning",
+                "version": "1.7.5"
+            },
+            {
+                "name": "aim",
+                "version": "3.14.1"
+            },
+            {
+                "name": "torch",
+                "version": "1.12.1+cu116"
+            },
+            {
+                "name": "torchvision",
+                "version": "0.13.1+cu116"
+            },
+            {
+                "name": "ipdb",
+                "version": "0.13.9"
+            },
+            {
+                "name": "numpy",
+                "version": "1.23.4"
+            },
+            {
+                "name": "tqdm",
+                "version": "4.64.1"
+            },
+            {
+                "name": "accelerate",
+                "version": "0.13.1"
+            }
+        ]
+    },
+    "type": "experiment",
+    "experiment": [
+        {
+            "data": {
+                "module": "data.loaders.cifar10.data_loader",
+                "class_name": "CifarLightningDataModule",
+                "object_key": "data",
+                "params": {
+                    "location": "./data/cifar10",
+                    "batch_size": 128,
+                    "image_size": [
+                        256,
+                        256
+                    ],
+                    "crop_size": 4
+                },
+                "docs": {}
+            },
+            "pytorch_lightning_module": {
+                "module": "trainers.base_classification.base_classification",
+                "class_name": "LightningClassificationModule",
+                "params": {
+                    "classifier": {
+                        "module": "models.resnet.resnet",
+                        "class_name": "ResNet",
+                        "object_key": "classifier",
+                        "params": {
+                            "block": {
+                                "module": "models.resnet.resnet",
+                                "class_type": "BasicBlock"
+                            },
+                            "layers": [
+                                3,
+                                4,
+                                6,
+                                3
+                            ],
+                            "num_classes": 10,
+                            "in_channels": 3,
+                            "zero_init_residual": false,
+                            "groups": 1,
+                            "width_per_group": 64,
+                            "replace_stride_with_dilation": [
+                                false,
+                                false,
+                                false
+                            ],
+                            "norm_layer": {
+                                "module": "torch.nn",
+                                "class_type": "BatchNorm2d"
+                            }
+                        },
+                        "docs": {}
+                    },
+                    "optimizers": {
+                        "optimizer": {
+                            "module": "torch.optim",
+                            "class_name": "Adam",
+                            "object_key": "optimizer",
+                            "params": {
+                                "lr": 0.0004,
+                                "betas": [
+                                    0.5,
+                                    0.999
+                                ],
+                                "params": {
+                                    "reference_key": "classifier",
+                                    "function_call": "parameters",
+                                    "params": {}
+                                },
+                                "eps": 1e-08,
+                                "weight_decay": 0,
+                                "amsgrad": false
+                            },
+                            "docs": {
+                                "short_description": "Implements Adam algorithm.",
+                                "long_description": ".. math::\n   \\begin{aligned}\n        &\\rule{110mm}{0.4pt}                                                                 \\\\\n        &\\textbf{input}      : \\gamma \\text{ (lr)}, \\beta_1, \\beta_2\n            \\text{ (betas)},\\theta_0 \\text{ (params)},f(\\theta) \\text{ (objective)}          \\\\\n        &\\hspace{13mm}      \\lambda \\text{ (weight decay)},  \\: \\textit{amsgrad},\n            \\:\\textit{maximize}                                                              \\\\\n        &\\textbf{initialize} :  m_0 \\leftarrow 0 \\text{ ( first moment)},\n            v_0\\leftarrow 0 \\text{ (second moment)},\\: \\widehat{v_0}^{max}\\leftarrow 0\\\\[-1.ex]\n        &\\rule{110mm}{0.4pt}                                                                 \\\\\n        &\\textbf{for} \\: t=1 \\: \\textbf{to} \\: \\ldots \\: \\textbf{do}                         \\\\\n\n        &\\hspace{5mm}\\textbf{if} \\: \\textit{maximize}:                                       \\\\\n        &\\hspace{10mm}g_t           \\leftarrow   -\\nabla_{\\theta} f_t (\\theta_{t-1})         \\\\\n        &\\hspace{5mm}\\textbf{else}                                                           \\\\\n        &\\hspace{10mm}g_t           \\leftarrow   \\nabla_{\\theta} f_t (\\theta_{t-1})          \\\\\n        &\\hspace{5mm}\\textbf{if} \\: \\lambda \\neq 0                                           \\\\\n        &\\hspace{10mm} g_t \\leftarrow g_t + \\lambda  \\theta_{t-1}                            \\\\\n        &\\hspace{5mm}m_t           \\leftarrow   \\beta_1 m_{t-1} + (1 - \\beta_1) g_t          \\\\\n        &\\hspace{5mm}v_t           \\leftarrow   \\beta_2 v_{t-1} + (1-\\beta_2) g^2_t          \\\\\n        &\\hspace{5mm}\\widehat{m_t} \\leftarrow   m_t/\\big(1-\\beta_1^t \\big)                   \\\\\n        &\\hspace{5mm}\\widehat{v_t} \\leftarrow   v_t/\\big(1-\\beta_2^t \\big)                   \\\\\n        &\\hspace{5mm}\\textbf{if} \\: amsgrad                                                  \\\\\n        &\\hspace{10mm}\\widehat{v_t}^{max} \\leftarrow \\mathrm{max}(\\widehat{v_t}^{max},\n            \\widehat{v_t})                                                                   \\\\\n        &\\hspace{10mm}\\theta_t \\leftarrow \\theta_{t-1} - \\gamma \\widehat{m_t}/\n            \\big(\\sqrt{\\widehat{v_t}^{max}} + \\epsilon \\big)                                 \\\\\n        &\\hspace{5mm}\\textbf{else}                                                           \\\\\n        &\\hspace{10mm}\\theta_t \\leftarrow \\theta_{t-1} - \\gamma \\widehat{m_t}/\n            \\big(\\sqrt{\\widehat{v_t}} + \\epsilon \\big)                                       \\\\\n        &\\rule{110mm}{0.4pt}                                                          \\\\[-1.ex]\n        &\\bf{return} \\:  \\theta_t                                                     \\\\[-1.ex]\n        &\\rule{110mm}{0.4pt}                                                          \\\\[-1.ex]\n   \\end{aligned}\n\nFor further details regarding the algorithm we refer to `Adam: A Method for Stochastic Optimization`_.",
+                                "params": [
+                                    {
+                                        "name": "params",
+                                        "type": "iterable",
+                                        "description": "iterable of parameters to optimize or dicts defining\nparameter groups",
+                                        "default": null,
+                                        "is_optional": false
+                                    },
+                                    {
+                                        "name": "lr",
+                                        "type": "float",
+                                        "description": "learning rate (default: 1e-3)",
+                                        "default": null,
+                                        "is_optional": true
+                                    },
+                                    {
+                                        "name": "betas",
+                                        "type": "Tuple[float, float]",
+                                        "description": "coefficients used for computing\nrunning averages of gradient and its square (default: (0.9, 0.999))",
+                                        "default": null,
+                                        "is_optional": true
+                                    },
+                                    {
+                                        "name": "eps",
+                                        "type": "float",
+                                        "description": "term added to the denominator to improve\nnumerical stability (default: 1e-8)",
+                                        "default": null,
+                                        "is_optional": true
+                                    },
+                                    {
+                                        "name": "weight_decay",
+                                        "type": "float",
+                                        "description": "weight decay (L2 penalty) (default: 0)",
+                                        "default": null,
+                                        "is_optional": true
+                                    },
+                                    {
+                                        "name": "amsgrad",
+                                        "type": "boolean",
+                                        "description": "whether to use the AMSGrad variant of this\nalgorithm from the paper `On the Convergence of Adam and Beyond`_\n(default: False)",
+                                        "default": null,
+                                        "is_optional": true
+                                    },
+                                    {
+                                        "name": "foreach",
+                                        "type": "bool",
+                                        "description": "whether foreach implementation of optimizer\nis used (default: None)",
+                                        "default": null,
+                                        "is_optional": true
+                                    },
+                                    {
+                                        "name": "maximize",
+                                        "type": "bool",
+                                        "description": "maximize the params based on the objective, instead of\nminimizing (default: False)",
+                                        "default": null,
+                                        "is_optional": true
+                                    },
+                                    {
+                                        "name": "capturable",
+                                        "type": "bool",
+                                        "description": "whether this instance is safe to capture in a CUDA graph.\nPassing True can impair ungraphed performance, so if you don't intend to\ngraph capture this instance, leave it False (default: False)",
+                                        "default": null,
+                                        "is_optional": true
+                                    }
+                                ]
+                            }
+                        },
+                        "lr_scheduler": {
+                            "monitor": "val_loss",
+                            "scheduler": {
+                                "module": "torch.optim.lr_scheduler",
+                                "class_name": "ReduceLROnPlateau",
+                                "params": {
+                                    "optimizer": "{optimizer}",
+                                    "mode": "min",
+                                    "factor": 0.5,
+                                    "threshold": 1e-08,
+                                    "threshold_mode": "rel",
+                                    "patience": 0,
+                                    "verbose": true,
+                                    "cooldown": 0,
+                                    "min_lr": 0,
+                                    "eps": 1e-08
+                                },
+                                "docs": {
+                                    "short_description": "Reduce learning rate when a metric has stopped improving.",
+                                    "long_description": "Models often benefit from reducing the learning rate by a factor\nof 2-10 once learning stagnates. This scheduler reads a metrics\nquantity and if no improvement is seen for a 'patience' number\nof epochs, the learning rate is reduced.",
+                                    "params": [
+                                        {
+                                            "name": "optimizer",
+                                            "type": "Optimizer",
+                                            "description": "Wrapped optimizer.",
+                                            "default": null,
+                                            "is_optional": false
+                                        },
+                                        {
+                                            "name": "mode",
+                                            "type": "str",
+                                            "description": "One of `min`, `max`. In `min` mode, lr will\nbe reduced when the quantity monitored has stopped\ndecreasing; in `max` mode it will be reduced when the\nquantity monitored has stopped increasing. Default: 'min'.",
+                                            "default": null,
+                                            "is_optional": false
+                                        },
+                                        {
+                                            "name": "factor",
+                                            "type": "float",
+                                            "description": "Factor by which the learning rate will be\nreduced. new_lr = lr * factor. Default: 0.1.",
+                                            "default": null,
+                                            "is_optional": false
+                                        },
+                                        {
+                                            "name": "patience",
+                                            "type": "int",
+                                            "description": "Number of epochs with no improvement after\nwhich learning rate will be reduced. For example, if\n`patience = 2`, then we will ignore the first 2 epochs\nwith no improvement, and will only decrease the LR after the\n3rd epoch if the loss still hasn't improved then.\nDefault: 10.",
+                                            "default": null,
+                                            "is_optional": false
+                                        },
+                                        {
+                                            "name": "threshold",
+                                            "type": "float",
+                                            "description": "Threshold for measuring the new optimum,\nto only focus on significant changes. Default: 1e-4.",
+                                            "default": null,
+                                            "is_optional": false
+                                        },
+                                        {
+                                            "name": "threshold_mode",
+                                            "type": "str",
+                                            "description": "One of `rel`, `abs`. In `rel` mode,\ndynamic_threshold = best * ( 1 + threshold ) in 'max'\nmode or best * ( 1 - threshold ) in `min` mode.\nIn `abs` mode, dynamic_threshold = best + threshold in\n`max` mode or best - threshold in `min` mode. Default: 'rel'.",
+                                            "default": null,
+                                            "is_optional": false
+                                        },
+                                        {
+                                            "name": "cooldown",
+                                            "type": "int",
+                                            "description": "Number of epochs to wait before resuming\nnormal operation after lr has been reduced. Default: 0.",
+                                            "default": null,
+                                            "is_optional": false
+                                        },
+                                        {
+                                            "name": "min_lr",
+                                            "type": "float or list",
+                                            "description": "A scalar or a list of scalars. A\nlower bound on the learning rate of all param groups\nor each group respectively. Default: 0.",
+                                            "default": null,
+                                            "is_optional": false
+                                        },
+                                        {
+                                            "name": "eps",
+                                            "type": "float",
+                                            "description": "Minimal decay applied to lr. If the difference\nbetween new and old lr is smaller than eps, the update is\nignored. Default: 1e-8.",
+                                            "default": null,
+                                            "is_optional": false
+                                        },
+                                        {
+                                            "name": "verbose",
+                                            "type": "bool",
+                                            "description": "If ``True``, prints a message to stdout for\neach update. Default: ``False``.",
+                                            "default": null,
+                                            "is_optional": false
+                                        }
+                                    ],
+                                    "examples": [
+                                        {
+                                            "args": [
+                                                "examples"
+                                            ],
+                                            "snippet": null,
+                                            "description": ">>> optimizer = torch.optim.SGD(model.parameters(), lr=0.1, momentum=0.9)\n>>> scheduler = ReduceLROnPlateau(optimizer, 'min')\n>>> for epoch in range(10):\n>>>     train(...)\n>>>     val_loss = validate(...)\n>>>     # Note that step should be called after validate()\n>>>     scheduler.step(val_loss)"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "nro": "Fix me!"
+                },
+                "docs": {}
+            },
+            "trainer": {
+                "module": "pytorch_lightning",
+                "class_name": "Trainer",
+                "params": {
+                    "gpus": 1,
+                    "max_epochs": 100,
+                    "precision": 16,
+                    "gradient_clip_val": 0.5,
+                    "enable_checkpointing": true,
+                    "callbacks": [
+                        {
+                            "module": "pytorch_lightning.callbacks",
+                            "class_name": "EarlyStopping",
+                            "params": {
+                                "monitor": "val_loss",
+                                "patience": 10,
+                                "mode": "min",
+                                "min_delta": 0.0,
+                                "verbose": false,
+                                "strict": true,
+                                "check_finite": true,
+                                "log_rank_zero_only": false
+                            },
+                            "docs": {
+                                "short_description": "Monitor a metric and stop training when it stops improving.",
+                                "params": [
+                                    {
+                                        "name": "monitor",
+                                        "type": null,
+                                        "description": "quantity to be monitored.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "min_delta",
+                                        "type": null,
+                                        "description": "minimum change in the monitored quantity to qualify as an improvement, i.e. an absolute\nchange of less than or equal to `min_delta`, will count as no improvement.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "patience",
+                                        "type": null,
+                                        "description": "number of checks with no improvement\nafter which training will be stopped. Under the default configuration, one check happens after\nevery training epoch. However, the frequency of validation can be modified by setting various parameters on\nthe ``Trainer``, for example ``check_val_every_n_epoch`` and ``val_check_interval``.\n\n.. note::\n\n    It must be noted that the patience parameter counts the number of validation checks with\n    no improvement, and not the number of training epochs. Therefore, with parameters\n    ``check_val_every_n_epoch=10`` and ``patience=3``, the trainer will perform at least 40 training\n    epochs before being stopped.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "verbose",
+                                        "type": null,
+                                        "description": "verbosity mode.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "mode",
+                                        "type": null,
+                                        "description": "one of ``'min'``, ``'max'``. In ``'min'`` mode, training will stop when the quantity\nmonitored has stopped decreasing and in ``'max'`` mode it will stop when the quantity\nmonitored has stopped increasing.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "strict",
+                                        "type": null,
+                                        "description": "whether to crash the training if `monitor` is not found in the validation metrics.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "check_finite",
+                                        "type": null,
+                                        "description": "When set ``True``, stops training when the monitor becomes NaN or infinite.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "stopping_threshold",
+                                        "type": null,
+                                        "description": "Stop training immediately once the monitored quantity reaches this threshold.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "divergence_threshold",
+                                        "type": null,
+                                        "description": "Stop training as soon as the monitored quantity becomes worse than this threshold.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "check_on_train_epoch_end",
+                                        "type": null,
+                                        "description": "whether to run early stopping at the end of the training epoch.\nIf this is ``False``, then the check runs at the end of the validation.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "log_rank_zero_only",
+                                        "type": null,
+                                        "description": "When set ``True``, logs the status of the early stopping callback only for rank 0 process.",
+                                        "default": null,
+                                        "is_optional": null
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "module": "pytorch_lightning.callbacks",
+                            "class_name": "ModelCheckpoint",
+                            "params": {
+                                "dirpath": "{save_dir}/checkpoints",
+                                "monitor": "val_loss",
+                                "save_top_k": 1,
+                                "verbose": true,
+                                "save_last": true,
+                                "mode": "min",
+                                "save_weights_only": false,
+                                "auto_insert_metric_name": true
+                            },
+                            "docs": {
+                                "short_description": "Save the model periodically by monitoring a quantity. Every metric logged with",
+                                "long_description": ":meth:`~pytorch_lightning.core.module.log` or :meth:`~pytorch_lightning.core.module.log_dict` in\nLightningModule is a candidate for the monitor key. For more information, see\n:ref:`checkpointing`.\n\nAfter training finishes, use :attr:`best_model_path` to retrieve the path to the\nbest checkpoint file and :attr:`best_model_score` to retrieve its score.",
+                                "params": [
+                                    {
+                                        "name": "dirpath",
+                                        "type": null,
+                                        "description": "directory to save the model file.\nExample::\n\n    # custom path\n    # saves a file like: my/path/epoch=0-step=10.ckpt\n    >>> checkpoint_callback = ModelCheckpoint(dirpath='my/path/')\n\nBy default, dirpath is ``None`` and will be set at runtime to the location\nspecified by :class:`~pytorch_lightning.trainer.trainer.Trainer`'s\n:paramref:`~pytorch_lightning.trainer.trainer.Trainer.default_root_dir` or\n:paramref:`~pytorch_lightning.trainer.trainer.Trainer.weights_save_path` arguments,\nand if the Trainer uses a logger, the path will also contain logger name and version.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "filename",
+                                        "type": null,
+                                        "description": "checkpoint filename. Can contain named formatting options to be auto-filled.\nExample::\n\n    # save any arbitrary metrics like `val_loss`, etc. in name\n    # saves a file like: my/path/epoch=2-val_loss=0.02-other_metric=0.03.ckpt\n    >>> checkpoint_callback = ModelCheckpoint(\n    ...     dirpath='my/path',\n    ...     filename='{epoch}-{val_loss:.2f}-{other_metric:.2f}'\n    ... )\n\nBy default, filename is ``None`` and will be set to ``'{epoch}-{step}'``.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "monitor",
+                                        "type": null,
+                                        "description": "quantity to monitor. By default it is ``None`` which saves a checkpoint only for the last epoch.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "verbose",
+                                        "type": null,
+                                        "description": "verbosity mode. Default: ``False``.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "save_last",
+                                        "type": null,
+                                        "description": "When ``True``, saves an exact copy of the checkpoint to a file `last.ckpt` whenever a checkpoint\nfile gets saved. This allows accessing the latest checkpoint in a deterministic manner. Default: ``None``.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "save_top_k",
+                                        "type": null,
+                                        "description": "if ``save_top_k == k``,\nthe best k models according to the quantity monitored will be saved.\nif ``save_top_k == 0``, no models are saved.\nif ``save_top_k == -1``, all models are saved.\nPlease note that the monitors are checked every ``every_n_epochs`` epochs.\nif ``save_top_k >= 2`` and the callback is called multiple\ntimes inside an epoch, the name of the saved file will be\nappended with a version count starting with ``v1``.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "mode",
+                                        "type": null,
+                                        "description": "one of {min, max}.\nIf ``save_top_k != 0``, the decision to overwrite the current save file is made\nbased on either the maximization or the minimization of the monitored quantity.\nFor ``'val_acc'``, this should be ``'max'``, for ``'val_loss'`` this should be ``'min'``, etc.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "auto_insert_metric_name",
+                                        "type": null,
+                                        "description": "When ``True``, the checkpoints filenames will contain the metric name.\nFor example, ``filename='checkpoint_{epoch:02d}-{acc:02.0f}`` with epoch ``1`` and acc ``1.12`` will resolve\nto ``checkpoint_epoch=01-acc=01.ckpt``. Is useful to set it to ``False`` when metric names contain ``/``\nas this will result in extra folders.\nFor example, ``filename='epoch={epoch}-step={step}-val_acc={val/acc:.2f}', auto_insert_metric_name=False``",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "save_weights_only",
+                                        "type": null,
+                                        "description": "if ``True``, then only the model's weights will be\nsaved. Otherwise, the optimizer states, lr-scheduler states, etc are added in the checkpoint too.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "every_n_train_steps",
+                                        "type": null,
+                                        "description": "Number of training steps between checkpoints.\nIf ``every_n_train_steps == None or every_n_train_steps == 0``, we skip saving during training.\nTo disable, set ``every_n_train_steps = 0``. This value must be ``None`` or non-negative.\nThis must be mutually exclusive with ``train_time_interval`` and ``every_n_epochs``.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "train_time_interval",
+                                        "type": null,
+                                        "description": "Checkpoints are monitored at the specified time interval.\nFor all practical purposes, this cannot be smaller than the amount\nof time it takes to process a single training batch. This is not\nguaranteed to execute at the exact time specified, but should be close.\nThis must be mutually exclusive with ``every_n_train_steps`` and ``every_n_epochs``.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "every_n_epochs",
+                                        "type": null,
+                                        "description": "Number of epochs between checkpoints.\nThis value must be ``None`` or non-negative.\nTo disable saving top-k checkpoints, set ``every_n_epochs = 0``.\nThis argument does not impact the saving of ``save_last=True`` checkpoints.\nIf all of ``every_n_epochs``, ``every_n_train_steps`` and\n``train_time_interval`` are ``None``, we save a checkpoint at the end of every epoch\n(equivalent to ``every_n_epochs = 1``).\nIf ``every_n_epochs == None`` and either ``every_n_train_steps != None`` or ``train_time_interval != None``,\nsaving at the end of each epoch is disabled\n(equivalent to ``every_n_epochs = 0``).\nThis must be mutually exclusive with ``every_n_train_steps`` and ``train_time_interval``.\nSetting both ``ModelCheckpoint(..., every_n_epochs=V, save_on_train_epoch_end=False)`` and\n``Trainer(max_epochs=N, check_val_every_n_epoch=M)``\nwill only save checkpoints at epochs 0 < E <= N\nwhere both values for ``every_n_epochs`` and ``check_val_every_n_epoch`` evenly divide E.",
+                                        "default": null,
+                                        "is_optional": null
+                                    },
+                                    {
+                                        "name": "save_on_train_epoch_end",
+                                        "type": null,
+                                        "description": "Whether to run checkpointing at the end of the training epoch.\nIf this is ``False``, then the check runs at the end of the validation.",
+                                        "default": null,
+                                        "is_optional": null
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "logger": {
+                        "module": "aim.pytorch_lightning",
+                        "class_name": "AimLogger",
+                        "params": {
+                            "experiment": "default",
+                            "train_metric_prefix": "train_",
+                            "val_metric_prefix": "val_",
+                            "test_metric_prefix": "test_",
+                            "system_tracking_interval": 10,
+                            "log_system_params": true
+                        },
+                        "docs": {}
+                    },
+                    "num_nodes": 1,
+                    "auto_select_gpus": false,
+                    "enable_progress_bar": true,
+                    "overfit_batches": 0.0,
+                    "track_grad_norm": -1,
+                    "check_val_every_n_epoch": 1,
+                    "fast_dev_run": false,
+                    "max_steps": -1,
+                    "log_every_n_steps": 50,
+                    "sync_batchnorm": false,
+                    "enable_model_summary": true,
+                    "num_sanity_val_steps": 2,
+                    "reload_dataloaders_every_n_epochs": 0,
+                    "auto_lr_find": false,
+                    "replace_sampler_ddp": true,
+                    "detect_anomaly": false,
+                    "auto_scale_batch_size": false,
+                    "amp_backend": "native",
+                    "move_metrics_to_cpu": false,
+                    "multiple_trainloader_mode": "max_size_cycle"
+                },
+                "docs": {}
+            },
+            "errors": [
+                "Missing parameter nro. Hint: Add a default value or type annotation"
+            ]
+        },
+        []
+    ]
+}

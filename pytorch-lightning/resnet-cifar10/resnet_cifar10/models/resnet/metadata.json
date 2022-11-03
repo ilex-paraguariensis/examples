@@ -3,16 +3,9 @@
     "description": "ResNet on CIFAR10",
     "version": "0.1.0",
     "author": "Mate",
+    "authors": [],
     "license": "MIT",
-    "url": "https://github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/models/resnet/",
-    "category": "classification",
-    "backbone": "pytorch_lightning",
-    "module_path": [
-        "models",
-        "resnet"
-    ],
-    "hash": "aa1ee66e1618eb5614ee7c6fa9ebd0e7a29d9ccc",
-    "type": "models",
+    "url": "https//github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/models/resnet/",
     "exports": {
         "classes": [
             {
@@ -48,8 +41,8 @@
                     {
                         "sample": {
                             "module": "models.resnet.resnet",
-                            "object_key": "classifier",
                             "class_name": "ResNet",
+                            "object_key": "classifier",
                             "params": {
                                 "block": {
                                     "module": "models.resnet.resnet",
@@ -95,12 +88,11 @@
                             "pytorch_lightning_module": {
                                 "module": "trainers.base_classification.base_classification",
                                 "class_name": "LightningClassificationModule",
-                                "object_key": "pl_model",
                                 "params": {
                                     "classifier": {
                                         "module": "models.resnet.resnet",
-                                        "object_key": "classifier",
                                         "class_name": "ResNet",
+                                        "object_key": "classifier",
                                         "params": {
                                             "block": {
                                                 "module": "models.resnet.resnet",
@@ -140,10 +132,13 @@
                                                     0.999
                                                 ],
                                                 "params": {
-                                                    "function_call": "parameters",
                                                     "reference_key": "classifier",
+                                                    "function_call": "parameters",
                                                     "params": {}
-                                                }
+                                                },
+                                                "eps": 1e-08,
+                                                "weight_decay": 0,
+                                                "amsgrad": false
                                             }
                                         },
                                         "lr_scheduler": {
@@ -158,11 +153,15 @@
                                                     "threshold": 1e-08,
                                                     "threshold_mode": "rel",
                                                     "patience": 0,
-                                                    "verbose": true
+                                                    "verbose": true,
+                                                    "cooldown": 0,
+                                                    "min_lr": 0,
+                                                    "eps": 1e-08
                                                 }
                                             }
                                         }
-                                    }
+                                    },
+                                    "nro": "Fix me!"
                                 }
                             },
                             "trainer": {
@@ -181,7 +180,12 @@
                                             "params": {
                                                 "monitor": "val_loss",
                                                 "patience": 10,
-                                                "mode": "min"
+                                                "mode": "min",
+                                                "min_delta": 0.0,
+                                                "verbose": false,
+                                                "strict": true,
+                                                "check_finite": true,
+                                                "log_rank_zero_only": false
                                             }
                                         },
                                         {
@@ -193,7 +197,9 @@
                                                 "save_top_k": 1,
                                                 "verbose": true,
                                                 "save_last": true,
-                                                "mode": "min"
+                                                "mode": "min",
+                                                "save_weights_only": false,
+                                                "auto_insert_metric_name": true
                                             }
                                         }
                                     ],
@@ -203,27 +209,37 @@
                                         "params": {
                                             "experiment": "default",
                                             "train_metric_prefix": "train_",
-                                            "val_metric_prefix": "val_"
-                                        }
-                                    }
-                                },
-                                "method_args": [
-                                    {
-                                        "function": "fit",
-                                        "params": {
-                                            "model": "{pl_model}",
-                                            "datamodule": "{data}"
+                                            "val_metric_prefix": "val_",
+                                            "test_metric_prefix": "test_",
+                                            "system_tracking_interval": 10,
+                                            "log_system_params": true
                                         }
                                     },
-                                    {
-                                        "function": "test",
-                                        "params": {
-                                            "model": "{pl_model}",
-                                            "datamodule": "{data}"
-                                        }
-                                    }
-                                ]
-                            }
+                                    "num_nodes": 1,
+                                    "auto_select_gpus": false,
+                                    "enable_progress_bar": true,
+                                    "overfit_batches": 0.0,
+                                    "track_grad_norm": -1,
+                                    "check_val_every_n_epoch": 1,
+                                    "fast_dev_run": false,
+                                    "max_steps": -1,
+                                    "log_every_n_steps": 50,
+                                    "sync_batchnorm": false,
+                                    "enable_model_summary": true,
+                                    "num_sanity_val_steps": 2,
+                                    "reload_dataloaders_every_n_epochs": 0,
+                                    "auto_lr_find": false,
+                                    "replace_sampler_ddp": true,
+                                    "detect_anomaly": false,
+                                    "auto_scale_batch_size": false,
+                                    "amp_backend": "native",
+                                    "move_metrics_to_cpu": false,
+                                    "multiple_trainloader_mode": "max_size_cycle"
+                                }
+                            },
+                            "errors": [
+                                "Missing parameter nro. Hint: Add a default value or type annotation"
+                            ]
                         }
                     }
                 ],
@@ -240,13 +256,20 @@
         ],
         "functions": []
     },
-    "history_url": [],
+    "category": "",
+    "backbone": "",
+    "module_path": [
+        "models",
+        "resnet"
+    ],
+    "hash": "aa1ee66e1618eb5614ee7c6fa9ebd0e7a29d9ccc",
+    "type": "models",
     "dependencies": {
         "pip": [
             {
                 "name": "torch",
                 "version": "1.12.1+cu116",
-                "lastVersion": "1.12.1"
+                "last_version": "1.12.1"
             }
         ]
     }

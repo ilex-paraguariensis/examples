@@ -3,8 +3,7 @@ from tensorflow import keras
 from tensorflow.keras import layers
 
 
-def get_model(
-    input_shape: tuple[int, int, int] = (180, 180, 3), num_classes: int = 2
+def get_model( input_shape: tuple[int, int, int] = (180, 180, 3), num_classes: int = 2
 ):
     inputs = keras.Input(shape=input_shape)
 

@@ -3,16 +3,9 @@
     "description": "ResNet on CIFAR10",
     "version": "0.1.0",
     "author": "Mate",
+    "authors": [],
     "license": "MIT",
     "url": "https//github.com/ilex-paraguariensis/examples/tree/main/pytorch-lightning/resnet-cifar10/resnet_cifar10/trainers/base_classification/",
-    "category": "classification",
-    "backbone": "pytorch_lightning",
-    "module_path": [
-        "trainers",
-        "base_classification"
-    ],
-    "hash": "721b4f4d647516222690860434ad5658f6da4241",
-    "type": "trainers",
     "exports": {
         "classes": [
             {
@@ -26,6 +19,10 @@
                     "optimizers": {
                         "class": "dict",
                         "module": "builtins"
+                    },
+                    "nro": {
+                        "type": "unknown",
+                        "description": "Unknown type, please add a type annotation or sample value"
                     }
                 },
                 "samples": [
@@ -33,12 +30,11 @@
                         "sample": {
                             "module": "trainers.base_classification.base_classification",
                             "class_name": "LightningClassificationModule",
-                            "object_key": "pl_model",
                             "params": {
                                 "classifier": {
                                     "module": "models.resnet.resnet",
-                                    "object_key": "classifier",
                                     "class_name": "ResNet",
+                                    "object_key": "classifier",
                                     "params": {
                                         "block": {
                                             "module": "models.resnet.resnet",
@@ -78,10 +74,13 @@
                                                 0.999
                                             ],
                                             "params": {
-                                                "function_call": "parameters",
                                                 "reference_key": "classifier",
+                                                "function_call": "parameters",
                                                 "params": {}
-                                            }
+                                            },
+                                            "eps": 1e-08,
+                                            "weight_decay": 0,
+                                            "amsgrad": false
                                         }
                                     },
                                     "lr_scheduler": {
@@ -96,11 +95,15 @@
                                                 "threshold": 1e-08,
                                                 "threshold_mode": "rel",
                                                 "patience": 0,
-                                                "verbose": true
+                                                "verbose": true,
+                                                "cooldown": 0,
+                                                "min_lr": 0,
+                                                "eps": 1e-08
                                             }
                                         }
                                     }
-                                }
+                                },
+                                "nro": "Fix me!"
                             }
                         },
                         "experiment": {
@@ -121,12 +124,11 @@
                             "pytorch_lightning_module": {
                                 "module": "trainers.base_classification.base_classification",
                                 "class_name": "LightningClassificationModule",
-                                "object_key": "pl_model",
                                 "params": {
                                     "classifier": {
                                         "module": "models.resnet.resnet",
-                                        "object_key": "classifier",
                                         "class_name": "ResNet",
+                                        "object_key": "classifier",
                                         "params": {
                                             "block": {
                                                 "module": "models.resnet.resnet",
@@ -166,10 +168,13 @@
                                                     0.999
                                                 ],
                                                 "params": {
-                                                    "function_call": "parameters",
                                                     "reference_key": "classifier",
+                                                    "function_call": "parameters",
                                                     "params": {}
-                                                }
+                                                },
+                                                "eps": 1e-08,
+                                                "weight_decay": 0,
+                                                "amsgrad": false
                                             }
                                         },
                                         "lr_scheduler": {
@@ -184,11 +189,15 @@
                                                     "threshold": 1e-08,
                                                     "threshold_mode": "rel",
                                                     "patience": 0,
-                                                    "verbose": true
+                                                    "verbose": true,
+                                                    "cooldown": 0,
+                                                    "min_lr": 0,
+                                                    "eps": 1e-08
                                                 }
                                             }
                                         }
-                                    }
+                                    },
+                                    "nro": "Fix me!"
                                 }
                             },
                             "trainer": {
@@ -207,7 +216,12 @@
                                             "params": {
                                                 "monitor": "val_loss",
                                                 "patience": 10,
-                                                "mode": "min"
+                                                "mode": "min",
+                                                "min_delta": 0.0,
+                                                "verbose": false,
+                                                "strict": true,
+                                                "check_finite": true,
+                                                "log_rank_zero_only": false
                                             }
                                         },
                                         {
@@ -219,7 +233,9 @@
                                                 "save_top_k": 1,
                                                 "verbose": true,
                                                 "save_last": true,
-                                                "mode": "min"
+                                                "mode": "min",
+                                                "save_weights_only": false,
+                                                "auto_insert_metric_name": true
                                             }
                                         }
                                     ],
@@ -229,33 +245,44 @@
                                         "params": {
                                             "experiment": "default",
                                             "train_metric_prefix": "train_",
-                                            "val_metric_prefix": "val_"
-                                        }
-                                    }
-                                },
-                                "method_args": [
-                                    {
-                                        "function": "fit",
-                                        "params": {
-                                            "model": "{pl_model}",
-                                            "datamodule": "{data}"
+                                            "val_metric_prefix": "val_",
+                                            "test_metric_prefix": "test_",
+                                            "system_tracking_interval": 10,
+                                            "log_system_params": true
                                         }
                                     },
-                                    {
-                                        "function": "test",
-                                        "params": {
-                                            "model": "{pl_model}",
-                                            "datamodule": "{data}"
-                                        }
-                                    }
-                                ]
-                            }
+                                    "num_nodes": 1,
+                                    "auto_select_gpus": false,
+                                    "enable_progress_bar": true,
+                                    "overfit_batches": 0.0,
+                                    "track_grad_norm": -1,
+                                    "check_val_every_n_epoch": 1,
+                                    "fast_dev_run": false,
+                                    "max_steps": -1,
+                                    "log_every_n_steps": 50,
+                                    "sync_batchnorm": false,
+                                    "enable_model_summary": true,
+                                    "num_sanity_val_steps": 2,
+                                    "reload_dataloaders_every_n_epochs": 0,
+                                    "auto_lr_find": false,
+                                    "replace_sampler_ddp": true,
+                                    "detect_anomaly": false,
+                                    "auto_scale_batch_size": false,
+                                    "amp_backend": "native",
+                                    "move_metrics_to_cpu": false,
+                                    "multiple_trainloader_mode": "max_size_cycle"
+                                }
+                            },
+                            "errors": [
+                                "Missing parameter nro. Hint: Add a default value or type annotation"
+                            ]
                         }
                     }
                 ],
                 "errors": [
                     "Missing parameter classifier.  Hint: <class 'torch.nn.modules.module.Module'>",
-                    "Missing parameter optimizers.  Hint: dict[str, torch.optim.optimizer.Optimizer]"
+                    "Missing parameter optimizers.  Hint: dict[str, torch.optim.optimizer.Optimizer]",
+                    "Missing parameter nro. Hint: Add a default value or type annotation"
                 ],
                 "returns": {
                     "class": "<class 'resnet_cifar10.trainers.base_classification.base_classification.LightningClassificationModule'>",
@@ -277,28 +304,35 @@
         ],
         "functions": []
     },
-    "history_url": [],
+    "category": "",
+    "backbone": "",
+    "module_path": [
+        "trainers",
+        "base_classification"
+    ],
+    "hash": "e00e815df57f48c8ddf718691463f17dd8dca623",
+    "type": "trainers",
     "dependencies": {
         "pip": [
             {
-                "name": "torch",
-                "version": "1.12.1+cu116",
-                "lastVersion": "1.12.1"
+                "name": "pytorch_lightning",
+                "version": "1.7.5",
+                "last_version": "1.7.7"
             },
             {
                 "name": "aim",
                 "version": "3.14.1",
-                "lastVersion": "3.14.1"
+                "last_version": "3.14.1"
             },
             {
-                "name": "pytorch_lightning",
-                "version": "1.7.5",
-                "lastVersion": "1.7.7"
+                "name": "torch",
+                "version": "1.12.1+cu116",
+                "last_version": "1.12.1"
             },
             {
                 "name": "ipdb",
                 "version": "0.13.9",
-                "lastVersion": "0.13.9"
+                "last_version": "0.13.9"
             }
         ]
     }

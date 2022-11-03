@@ -3,15 +3,9 @@
     "description": "",
     "version": "",
     "author": "",
+    "authors": [],
     "license": "",
-    "url": "keras_cats_vs_dogs/data_loaders/cifar10/",
-    "category": "",
-    "backbone": "",
-    "module_path": [
-        "data_loaders",
-        "cifar10"
-    ],
-    "type": "data_loaders",
+    "url": "https//github.com/ilex-paraguariensis/examples/tree/main/keras/example1/keras_cats_vs_dogs/data_loaders/cifar10/",
     "exports": {
         "classes": [],
         "functions": [
@@ -98,31 +92,39 @@
             }
         ]
     },
+    "category": "",
+    "backbone": "",
+    "module_path": [
+        "data_loaders",
+        "cifar10"
+    ],
+    "hash": "35a1c0e129db5a50587ad22db515e933f9053c79",
+    "type": "data_loaders",
     "dependencies": {
         "pip": [
             {
-                "name": "torchvision",
-                "version": "0.13.1+cu116",
-                "lastVersion": "0.13.1"
-            },
-            {
-                "name": "ipdb",
-                "version": "0.13.9",
-                "lastVersion": "0.13.9"
-            },
-            {
-                "name": "pytorch_lightning",
-                "version": "1.7.5",
-                "lastVersion": "1.7.7"
+                "name": "torch",
+                "version": "1.12.1+cu116",
+                "last_version": "1.12.1"
             },
             {
                 "name": "tensorflow_gpu",
                 "version": "2.10.0"
             },
             {
-                "name": "torch",
-                "version": "1.12.1+cu116",
-                "lastVersion": "1.12.1"
+                "name": "pytorch_lightning",
+                "version": "1.7.5",
+                "last_version": "1.7.7"
+            },
+            {
+                "name": "torchvision",
+                "version": "0.13.1+cu116",
+                "last_version": "0.13.1"
+            },
+            {
+                "name": "ipdb",
+                "version": "0.13.9",
+                "last_version": "0.13.9"
             }
         ]
     }

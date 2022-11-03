@@ -1,23 +1,15 @@
 {
     "data": {
-        "module": "data_loaders.cifar10.data_loader",
         "function": "get_train_data_loader",
+        "module": "data_loaders.cifar10.data_loader",
         "object_key": "data",
         "params": {
             "batch_size": 128
         }
     },
     "trainer": {
-        "module": "models.resnet.resnet",
         "function": "get_model",
-        "params": {
-            "input_shape": [
-                180,
-                180,
-                3
-            ],
-            "num_classes": 2
-        },
+        "module": "models.resnet.resnet",
         "object_key": "model",
         "method_args": [
             {
@@ -27,7 +19,12 @@
                         "module": "tensorflow.keras.optimizers",
                         "class_name": "Adam",
                         "params": {
-                            "learning_rate": 0.001
+                            "learning_rate": 0.001,
+                            "beta_1": 0.9,
+                            "beta_2": 0.999,
+                            "epsilon": 1e-07,
+                            "amsgrad": false,
+                            "name": "Adam"
                         }
                     },
                     "loss": "binary_crossentropy",
@@ -39,10 +36,22 @@
             {
                 "function": "fit",
                 "params": {
-                    "": "{data}",
+                    "x": "{data}",
                     "epochs": 10
                 }
             }
-        ]
-    }
+        ],
+        "params": {
+            "input_shape": [
+                180,
+                180,
+                3
+            ],
+            "num_classes": 2,
+            "shitf": "Fix me! <class 'str'>"
+        }
+    },
+    "errors": [
+        "Missing parameter shitf.  Hint: <class 'str'>"
+    ]
 }

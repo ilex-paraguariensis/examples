@@ -65,8 +65,16 @@ class DataLoader:
     def test_dataloader(self):
         return self.val_ds
 
+    @staticmethod
+    def get_loader(batch_size: int = 32):
+        if hasattr(DataLoader, "_loader"):
+            return DataLoader._loader
 
-loader = DataLoader()
+        DataLoader._loader = DataLoader(batch_size)
+        return DataLoader._loader
+
+
+loader = DataLoader.get_loader()
 
 
 def get_train_data_loader(batch_size: int = 32):
@@ -77,3 +85,8 @@ def get_train_data_loader(batch_size: int = 32):
 def get_data_loader(batch_size: int = 32):
 
     return loader.train_ds, loader.val_ds
+
+
+def get_test_data(batch_size: int = 32):
+
+    return loader.val_ds

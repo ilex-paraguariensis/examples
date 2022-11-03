@@ -5,7 +5,7 @@ import ipdb
 from aim import Run
 
 class LightningClassificationModule(LightningModule):
-    def __init__(self, classifier: t.nn.Module, optimizers:dict[str, t.optim.Optimizer]):
+    def __init__(self, classifier: t.nn.Module, optimizers:dict[str, t.optim.Optimizer], nro):
         super().__init__()
 
 

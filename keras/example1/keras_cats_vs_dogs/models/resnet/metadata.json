@@ -3,15 +3,9 @@
     "description": "",
     "version": "",
     "author": "",
+    "authors": [],
     "license": "",
-    "url": "keras_cats_vs_dogs/models/resnet/",
-    "category": "",
-    "backbone": "",
-    "module_path": [
-        "models",
-        "resnet"
-    ],
-    "type": "models",
+    "url": "https//github.com/ilex-paraguariensis/examples/tree/main/keras/example1/keras_cats_vs_dogs/models/resnet/",
     "exports": {
         "classes": [],
         "functions": [
@@ -19,6 +13,10 @@
                 "function_name": "get_model",
                 "module": "models.resnet",
                 "params": {
+                    "shitf": {
+                        "class": "str",
+                        "module": "builtins"
+                    },
                     "input_shape": [
                         180,
                         180,
@@ -116,6 +114,9 @@
                         }
                     }
                 ],
+                "errors": [
+                    "Missing parameter shitf.  Hint: <class 'str'>"
+                ],
                 "returns": {
                     "class": "<class 'keras.engine.functional.Functional'>",
                     "module": "keras.engine.functional",
@@ -134,16 +135,24 @@
             }
         ]
     },
+    "category": "",
+    "backbone": "",
+    "module_path": [
+        "models",
+        "resnet"
+    ],
+    "hash": "3be4842c6ce971e118083393221c06b7f2a11867",
+    "type": "models",
     "dependencies": {
         "pip": [
             {
-                "name": "torch",
-                "version": "1.12.1+cu116",
-                "lastVersion": "1.12.1"
-            },
-            {
                 "name": "tensorflow_gpu",
                 "version": "2.10.0"
+            },
+            {
+                "name": "torch",
+                "version": "1.12.1+cu116",
+                "last_version": "1.12.1"
             }
         ]
     }

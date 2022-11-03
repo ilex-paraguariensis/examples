@@ -5,19 +5,7 @@
     "author": "",
     "authors": [],
     "license": "",
-<<<<<<< HEAD
     "url": "https//github.com/ilex-paraguariensis/examples/tree/main/jax/mnist/mnist/data_loaders/mnist/",
-=======
-    "url": "https://github.com/ilex-paraguariensis/examplesmnist/data_loaders/mnist/",
-    "category": "",
-    "backbone": "",
-    "module_path": [
-        "data_loaders",
-        "mnist"
-    ],
-    "hash": "57d703c18562453ecb9401b6aff68a03f65fa2e0",
-    "type": "data_loaders",
->>>>>>> origin/main
     "exports": {
         "classes": [],
         "functions": [
