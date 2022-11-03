@@ -1,6 +1,6 @@
 {
     "data": {
-        "module": "data_loaders.mnist.datasets",
+        "module": "data.loaders.mnist.datasets",
         "function": "mnist",
         "object_key": "data",
         "params": {
