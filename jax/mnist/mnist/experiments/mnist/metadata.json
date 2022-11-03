@@ -1,0 +1,54 @@
+{
+    "name": "",
+    "description": "",
+    "version": "",
+    "author": "",
+    "authors": [],
+    "license": "",
+    "url": "https//github.com/ilex-paraguariensis/examples/tree/main/jax/mnist/",
+    "experiments": [
+        "mnist"
+    ],
+    "dependencies": {
+        "pip": [
+            {
+                "name": "ipdb",
+                "version": "0.13.9"
+            },
+            {
+                "name": "numpy",
+                "version": "1.23.4"
+            }
+        ]
+    },
+    "type": "experiment",
+    "experiment": [
+        {
+            "data": {
+                "function": "mnist",
+                "module": "data.loaders.mnist.datasets",
+                "object_key": "data",
+                "params": {
+                    "permute_train": true
+                },
+                "docs": {
+                    "short_description": "Download, parse and process MNIST data to unit scale and one-hot labels."
+                }
+            },
+            "train_function": {
+                "function": "train",
+                "module": "models.cnn.mnist_classifier",
+                "object_key": null,
+                "params": {
+                    "datasets": "{data}",
+                    "step_size": 0.001,
+                    "num_epochs": 10,
+                    "batch_size": 128,
+                    "momentum_mass": 0.9
+                },
+                "docs": {}
+            }
+        },
+        []
+    ]
+}

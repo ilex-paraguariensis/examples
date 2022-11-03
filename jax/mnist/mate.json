@@ -21,12 +21,12 @@
         "dependencies": {
             "pip": [
                 {
-                    "name": "ipdb",
-                    "version": "0.13.9"
-                },
-                {
                     "name": "numpy",
                     "version": "1.23.4"
+                },
+                {
+                    "name": "ipdb",
+                    "version": "0.13.9"
                 }
             ]
         },
@@ -35,10 +35,14 @@
                 "cnn": "https//github.com/ilex-paraguariensis/examples/tree/main/jax/mnist/mnist/models/cnn/"
             },
             "trainers": {},
-            "data_loaders": {
-                "mnist": "https//github.com/ilex-paraguariensis/examples/tree/main/jax/mnist/mnist/data_loaders/mnist/"
+            "data": {
+                "loaders": {
+                    "mnist": "https//github.com/ilex-paraguariensis/examples/tree/main/jax/mnist/mnist/data/loaders/mnist/"
+                }
             },
-            "data": {}
+            "experiments": {
+                "mnist": "https//github.com/ilex-paraguariensis/examples/tree/main/jax/mnist/"
+            }
         }
     }
 }
