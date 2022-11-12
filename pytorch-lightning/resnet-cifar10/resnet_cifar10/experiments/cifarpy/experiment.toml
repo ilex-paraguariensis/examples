@@ -15,9 +15,9 @@ function_call = "test"
 model = "{pl_model}"
 datamodule = "{data}"
 
-[objects.data]
-module = "data.loaders.cifar10.data_loader"
-class_name = "CifarLightningDataModule"
+[objects.trainer]
+module = "pytorch_lightning"
+class_name = "Trainer"
 
 [objects.classifier]
 module = "models.resnet.resnet"
@@ -31,31 +31,9 @@ class_name = "Adam"
 module = "trainers.base_classification.base_classification"
 class_name = "LightningClassificationModule"
 
-[objects.trainer]
-module = "pytorch_lightning"
-class_name = "Trainer"
-
-[objects.data.params]
-location = "./data/cifar10"
-batch_size = 32
-image_size = [ 256, 256,]
-crop_size = 4
-
-[objects.classifier.params]
-layers = [ 3, 4, 6, 3,]
-num_classes = 10
-in_channels = 3
-zero_init_residual = false
-groups = 1
-width_per_group = 64
-replace_stride_with_dilation = [ false, false, false,]
-
-[objects.optimizer.params]
-lr = 0.0004
-betas = [ 0.5, 0.999,]
-
-[objects.pl_model.params]
-classifier = "{classifier}"
+[objects.data]
+module = "data.loaders.cifar10.data_loader"
+class_name = "CifarLightningDataModule"
 
 [objects.trainer.params]
 gpus = 1
@@ -83,6 +61,32 @@ verbose = true
 save_last = true
 mode = "min"
 
+[objects.classifier.params]
+layers = [ 3, 4, 6, 3,]
+num_classes = 10
+in_channels = 3
+zero_init_residual = false
+groups = 1
+width_per_group = 64
+replace_stride_with_dilation = [ false, false, false,]
+
+[objects.optimizer.params]
+lr = 0.0004
+betas = [ 0.5, 0.999,]
+
+[objects.pl_model.params]
+classifier = "{classifier}"
+
+[objects.data.params]
+location = "./data/cifar10"
+batch_size = 32
+image_size = [ 256, 256,]
+crop_size = 4
+
+[objects.trainer.params.logger]
+module = "aim.pytorch_lightning"
+class_name = "AimLogger"
+
 [objects.classifier.params.block]
 module = "models.resnet.resnet"
 class_type = "BasicBlock"
@@ -98,19 +102,15 @@ function_call = "parameters"
 [objects.pl_model.params.optimizers]
 optimizer = "{optimizer}"
 
-[objects.trainer.params.logger]
-module = "aim.pytorch_lightning"
-class_name = "AimLogger"
+[objects.trainer.params.logger.params]
+experiment = "default"
+train_metric_prefix = "train_"
+val_metric_prefix = "val_"
 
 [objects.optimizer.params.params.params]
 
 [objects.pl_model.params.optimizers.lr_scheduler]
 monitor = "val_loss"
-
-[objects.trainer.params.logger.params]
-experiment = "default"
-train_metric_prefix = "train_"
-val_metric_prefix = "val_"
 
 [objects.pl_model.params.optimizers.lr_scheduler.scheduler]
 module = "torch.optim.lr_scheduler"

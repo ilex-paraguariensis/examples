@@ -1,0 +1,167 @@
+{
+    "data": {
+        "module": "data.loaders.cifar10.data_loader",
+        "class_name": "CifarLightningDataModule",
+        "object_key": "data",
+        "params": {
+            "location": "./data/cifar10",
+            "batch_size": 128,
+            "image_size": [
+                256,
+                256
+            ],
+            "crop_size": 4
+        }
+    },
+    "pytorch_lightning_module": {
+        "module": "trainers.base_classification.base_classification",
+        "class_name": "LightningClassificationModule",
+        "params": {
+            "classifier": {
+                "module": "models.resnet.resnet",
+                "class_name": "ResNet",
+                "object_key": "classifier",
+                "params": {
+                    "block": {
+                        "module": "models.resnet.resnet",
+                        "class_type": "BasicBlock"
+                    },
+                    "layers": [
+                        3,
+                        4,
+                        6,
+                        3
+                    ],
+                    "num_classes": 10,
+                    "in_channels": 3,
+                    "zero_init_residual": false,
+                    "groups": 1,
+                    "width_per_group": 64,
+                    "replace_stride_with_dilation": [
+                        false,
+                        false,
+                        false
+                    ],
+                    "norm_layer": {
+                        "module": "torch.nn",
+                        "class_type": "BatchNorm2d"
+                    }
+                }
+            },
+            "optimizers": {
+                "optimizer": {
+                    "module": "torch.optim",
+                    "class_name": "Adam",
+                    "object_key": "optimizer",
+                    "params": {
+                        "lr": 0.0004,
+                        "betas": [
+                            0.5,
+                            0.999
+                        ],
+                        "params": {
+                            "reference_key": "classifier",
+                            "function_call": "parameters",
+                            "params": {}
+                        },
+                        "eps": 1e-08,
+                        "weight_decay": 0,
+                        "amsgrad": false
+                    }
+                },
+                "lr_scheduler": {
+                    "monitor": "val_loss",
+                    "scheduler": {
+                        "module": "torch.optim.lr_scheduler",
+                        "class_name": "ReduceLROnPlateau",
+                        "params": {
+                            "optimizer": "{optimizer}",
+                            "mode": "min",
+                            "factor": 0.5,
+                            "threshold": 1e-08,
+                            "threshold_mode": "rel",
+                            "patience": 0,
+                            "verbose": true,
+                            "cooldown": 0,
+                            "min_lr": 0,
+                            "eps": 1e-08
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "trainer": {
+        "module": "pytorch_lightning",
+        "class_name": "Trainer",
+        "params": {
+            "gpus": 1,
+            "max_epochs": 100,
+            "precision": 16,
+            "gradient_clip_val": 0.5,
+            "enable_checkpointing": true,
+            "callbacks": [
+                {
+                    "module": "pytorch_lightning.callbacks",
+                    "class_name": "EarlyStopping",
+                    "params": {
+                        "monitor": "val_loss",
+                        "patience": 10,
+                        "mode": "min",
+                        "min_delta": 0.0,
+                        "verbose": false,
+                        "strict": true,
+                        "check_finite": true,
+                        "log_rank_zero_only": false
+                    }
+                },
+                {
+                    "module": "pytorch_lightning.callbacks",
+                    "class_name": "ModelCheckpoint",
+                    "params": {
+                        "dirpath": "{save_dir}/checkpoints",
+                        "monitor": "val_loss",
+                        "save_top_k": 1,
+                        "verbose": true,
+                        "save_last": true,
+                        "mode": "min",
+                        "save_weights_only": false,
+                        "auto_insert_metric_name": true
+                    }
+                }
+            ],
+            "logger": {
+                "module": "aim.pytorch_lightning",
+                "class_name": "AimLogger",
+                "params": {
+                    "experiment": "default",
+                    "train_metric_prefix": "train_",
+                    "val_metric_prefix": "val_",
+                    "test_metric_prefix": "test_",
+                    "system_tracking_interval": 10,
+                    "log_system_params": true
+                }
+            },
+            "num_nodes": 1,
+            "auto_select_gpus": false,
+            "enable_progress_bar": true,
+            "overfit_batches": 0.0,
+            "track_grad_norm": -1,
+            "check_val_every_n_epoch": 1,
+            "fast_dev_run": false,
+            "max_steps": -1,
+            "log_every_n_steps": 50,
+            "sync_batchnorm": false,
+            "enable_model_summary": true,
+            "num_sanity_val_steps": 2,
+            "reload_dataloaders_every_n_epochs": 0,
+            "auto_lr_find": false,
+            "replace_sampler_ddp": true,
+            "detect_anomaly": false,
+            "auto_scale_batch_size": false,
+            "amp_backend": "native",
+            "move_metrics_to_cpu": false,
+            "multiple_trainloader_mode": "max_size_cycle"
+        }
+    }
+}
